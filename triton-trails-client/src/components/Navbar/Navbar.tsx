@@ -7,6 +7,7 @@ const Navbar = () => {
       <div className="navbar-content">
         {/* Ideally would link to the Home page */}
         <h1 className="navbar-logo">TritonTrails</h1>
+        <img src = "/topbanner.png" alt = "Top Banner" className = "NavBanner"/>
         <div className="navbar-right">
           <ul className="navbar-links">
             <li><a href="#explore">Explore</a></li>

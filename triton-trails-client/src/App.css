@@ -1,55 +1,17 @@
-.Header
-{
-  overflow: hidden;
-  position: relative;
-  width: 100vw;
-  height: 100px;
-} 
-.width
-{
-  object-fit: cover;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-}
-.Title
-{
-  position: absolute;
-  padding-top: 2.5%;
-  padding-left: 5%;
-  color: white;
-  font-size: 30px;
-  font-stretch: extra-expanded;
-  font-weight: bold;
-  font-style: italic;
-  margin: 0;
-  z-index: 1;
-}
-.Nav {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end; 
-  gap: 20px;
-  position: absolute;
-  top: 50%;
-  right: 10px;
-  transform: translateY(-50%);
-  z-index: 2;
-}
-.NavLink {
-  color: white;
-  font-size: 18px;
-  text-decoration: none;
-  font-weight: bold;
-  transition: color 0.3s ease;
-}
-
-.NavLink:hover {
-  color: #cccccc; 
-}
-
-.MenuIcon {
-  width: 30px; 
-  height: auto;
-  cursor: pointer;
-}
+.App {
+    text-align: center;
+  }
+  
+  .App-header {
+    background-color: #77BDCE;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-size: calc(5px + 2vmin);
+    color: white;
+  }
+  
+  body {
+    font-family: 'Marmelad';
+  }
+  
