@@ -26,15 +26,16 @@
   z-index: 1;
 }
 .Nav {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end; 
+  gap: 20px;
   position: absolute;
   top: 50%;
-  right: 10%;
+  right: 10px;
   transform: translateY(-50%);
-  display: flex;
-  gap: 20px;
   z-index: 2;
 }
-
 .NavLink {
   color: white;
   font-size: 18px;
@@ -48,13 +49,7 @@
 }
 
 .MenuIcon {
-  display: none;
-  cursor: pointer;
   width: 30px; 
   height: auto;
-  position: absolute;
-  top: 50%;
-  right: 5%;
-  transform: translateY(-50%);
-  z-index: 2;
+  cursor: pointer;
 }

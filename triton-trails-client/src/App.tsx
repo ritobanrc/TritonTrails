@@ -12,10 +12,9 @@ function App() {
         <a href="#explore" className="NavLink">Explore</a>
         <a href="#wishlist" className="NavLink">Wishlist</a>
         <a href="#login" className="NavLink">Login</a>
-        <img src ="/menu.png" alt="Menu" className = "MenuIcon" />
+        <img src ="menu.png" alt="Menu" className = "MenuIcon" />
     </nav>    
     </div>
   );
 }
-
 export default App;
