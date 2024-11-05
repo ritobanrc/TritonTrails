@@ -3,7 +3,7 @@
     top: 0;
     padding: 0px;
     width: 100%;
-    /* background-color: #0A2239; messes with our banner */
+    background-color: #0A2239;
     color: #C4DFE9;
 }
 
@@ -36,6 +36,7 @@
     align-items: center;
     margin-left: auto;
     z-index: 3; 
+    margin-left: auto; /* Pushes this section to the right */
 }
 
 .navbar-links {
