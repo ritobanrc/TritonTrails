@@ -4,6 +4,8 @@ import './App.css';
 import { Trail } from './types/types'
 import { createTrail, fetchTrails } from './utils/trail-utils'
 import ImageUploadComponent from "./image-logic"
+import Navbar from './components/Navbar/Navbar';
+import Search from './components/Search page/Search'
 
 
 function App() {
@@ -51,7 +53,13 @@ function App() {
   };
 
   return (
-    <div>
+    <div className="App">
+      <header className="App-header">
+        <Navbar/>
+        <Search/>
+      </header>
+      
+     <div>
       <form onSubmit={onSubmit}>
       <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="Trail name" />
       <textarea value={description} onChange={(e) => setDescription(e.target.value)} placeholder="Trail description" />
