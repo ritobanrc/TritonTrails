@@ -1,12 +1,12 @@
+/*
 import React, { useEffect, useState } from "react";
-import logo from './logo.svg';
 import './App.css';
 import { Trail } from './types/types'
 import { createTrail, fetchTrails } from './utils/trail-utils'
 import ImageUploadComponent from "./image-logic"
 import Navbar from './components/Navbar/Navbar';
 import Search from './components/Search page/Search'
-import WeatherDisplay from './components//Weather/Weather';
+import WeatherDisplay from './components/Weather/Weather';
 
 
 function App() {
@@ -63,14 +63,14 @@ function App() {
             <h1>Weather</h1>
             <WeatherDisplay />
         </div>
-     <div>
+      <div>
       <form onSubmit={onSubmit}>
-      <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="Trail name" />
-      <textarea value={description} onChange={(e) => setDescription(e.target.value)} placeholder="Trail description" />
-      <input type="file" onChange={handleImageChange} accept="image/*" />
-      <button type="submit">Create Trail</button>
-      {image && <img src={image} alt="Preview" style={{ width: '100px', height: '100px' }} />}
-    </form>
+        <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="Trail name" />
+        <textarea value={description} onChange={(e) => setDescription(e.target.value)} placeholder="Trail description" />
+        <input type="file" onChange={handleImageChange} accept="image/*" />
+        <button type="submit">Create Trail</button>
+        {image && <img src={image} alt="Preview" style={{ width: '100px', height: '100px' }} />}
+      </form>
       <ul className="list-group">
       {trails.map((trail: Trail) => (
         <div>
@@ -86,6 +86,37 @@ function App() {
   
 }
 export default App;
+*/
+
+import React from "react";
+import "./App.css";
+import { AppProvider } from "./context/AppContext";
+import AddTrailForm from "./components/Trails/AddTrailForm"; // Import the form component
+import Navbar from "./components/Navbar/Navbar";
+import Search from "./components/Search page/Search";
+import WeatherDisplay from "./components/Weather/Weather";
+
+function App() {
+  return (
+    <AppProvider>
+      <div className="App">
+        <header className="App-header">
+          <Navbar />
+          <Search />
+        </header>
+        <div>
+          <h1>Weather</h1>
+          <WeatherDisplay />
+        </div>
+        <AddTrailForm /> 
+      </div>
+    </AppProvider>
+  );
+}
+    
+export default App;
+    
+
 
 
 
