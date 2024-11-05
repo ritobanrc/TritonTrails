@@ -6,6 +6,7 @@ import { createTrail, fetchTrails } from './utils/trail-utils'
 import ImageUploadComponent from "./image-logic"
 import Navbar from './components/Navbar/Navbar';
 import Search from './components/Search page/Search'
+import WeatherDisplay from './components//Weather/Weather';
 
 
 function App() {
@@ -58,7 +59,10 @@ function App() {
         <Navbar/>
         <Search/>
       </header>
-      
+      <div>
+            <h1>Weather</h1>
+            <WeatherDisplay />
+        </div>
      <div>
       <form onSubmit={onSubmit}>
       <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="Trail name" />
@@ -79,5 +83,9 @@ function App() {
     </div>
     </div>
   );
+  
 }
 export default App;
+
+
+
