@@ -9,19 +9,21 @@ import { createTrail } from './utils/trail-utils'
 function App() {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
+  const [trails, setTrails] = useState<Trail[]>([]);
 
   const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     const newTrail : Trail = {
+      id: trails.length+1,  //magic number one: !id in server util checked is true if first trail
       name: name as string,
       description: description as string,
-      image: ""
+      image: "placeholder"
     }
 
-    createTrail(newTrail);
+    setTrails([...trails, newTrail])
 
-    //setExpenses(expenses => [...expenses, newExpense])
+    createTrail(newTrail);
   }
 
 

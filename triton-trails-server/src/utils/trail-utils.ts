@@ -1,27 +1,39 @@
 import { Trail } from "../types/types";
 import { Request, Response } from "express";
-import { TrailModel } from "../trail"
+import { Database } from "sqlite";
 
-export async function createTrailServer(req: Request, res: Response, trail: Trail[]) {
-    const { name, description, image } = req.body;
-
-    if (!name || !description || !image) {
-        return res.status(400).send({ error: "Missing required fields" });
-    }
+export async function createTrailServer(req: Request, res: Response, db:Database) {
+    //const { id, name, description, image } = req.body;
 
     try {
-        const newTrail = await TrailModel.create({
-            name,
-            description,
-            image
-        });
-        res.status(201).send(newTrail);
+        // Type casting the request body to the expected format.
+        const { id, name, description, image } = req.body as { id: number, name: string, description: string, image: string };
+        console.log("id ", id);
+        console.log("name ", name)
+        console.log("description ", description)
+        console.log("image ", image)
+        if (!name || !id || !description) {
+            console.log("bad format")
+            return res.status(400).send({ error: "Missing required fields" });
+        }
+        console.log("running command")
+        await db.run('INSERT INTO trails (id, name, description, image) VALUES (?, ?, ?, ?);', [id, name, description, image]);
+        res.status(201).send({ id, name, description, image });
+
     } catch (error) {
-        console.error('Error creating trail:', error);
-        res.status(500).send({ error: "Internal Server Error" });
-    }
+        console.log("Error on create")
+        return res.status(400).send({ error: `Trail could not be created, + ${error}` });
+    };
 }
 
-export function getTrails(req: Request, res: Response, trails: Trail[]) {
-    res.status(200).send({ "data": trails });
+export async function getTrails(req: Request, res: Response, db: Database) {
+    try {
+        const trails = await db.all("SELECT * from trails")
+        res.status(200).send({"data": trails})
+
+    } catch (error) {
+
+        return res.status(400).send({ error: `Could not get trails, + ${error}` });
+
+    };
 }
