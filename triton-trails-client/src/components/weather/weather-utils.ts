@@ -1,5 +1,4 @@
-import { API_BASE_URL } from "../constants/constants.ts"
-
+import { WEATHER_BASE_URL } from "../../constants/constants"
 export const fetchWeather = async (): Promise<number> => 
 {
     const response = await fetch(`${API_BASE_URL}/weather`);

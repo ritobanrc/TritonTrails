@@ -1,1 +1,1 @@
-export const API_BASE_URL = "https://api.weather.gov/points/32.8328,-117.2713"
+export const WEATHER_BASE_URL = "https://api.weather.gov/gridpoints/SGX/53,20/forecast"
