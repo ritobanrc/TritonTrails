@@ -23,13 +23,16 @@
     color: black;
     font-weight: bold;
     position: absolute;
-    text-align: right;
+    text-align: left;
+    font-size: xx-large;
+    font-stretch:extra-expanded;
     font-family: 'roboto';
     /* Just some formatting / design stuff */
     font-size: 1.3em;
 }
 .image
 {
+    
     text-align: left;
 }
 .image-border
