@@ -21,11 +21,14 @@
     color: black;
     font-weight: bold;
     position: absolute;
-    text-align: right;
+    text-align: left;
+    font-size: xx-large;
+    font-stretch:extra-expanded;
     font-family: 'roboto';
 }
 .image
 {
+    
     text-align: left;
 }
 .search-content
