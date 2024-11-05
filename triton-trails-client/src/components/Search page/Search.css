@@ -16,3 +16,25 @@
     margin: 5px 20px;
     padding: 20px;
 }
+.title
+{
+    color: black;
+    font-weight: bold;
+    position: absolute;
+    text-align: right;
+    font-family: 'roboto';
+}
+.image
+{
+    text-align: left;
+}
+.search-content
+{
+    margin-top: 50px; 
+}
+.Description
+{
+    text-align: left;
+    color: black;
+    font-family: 'roboto';
+}

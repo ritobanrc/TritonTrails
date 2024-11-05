@@ -41,7 +41,7 @@ const WeatherDisplay = () => {
             <p>{period.detailedForecast}</p>
           </div>
         ))}
-      </div>
+      </div> 
     {/* test test */}
     </div>
   );

@@ -6,8 +6,16 @@ const Search = () => {
     <div className="search-page">
         <h1 className="search-header">Top results</h1>
         <div className="rounded-div">
+          <div className = "title">
+            Westfield UTC 
+            </div>
         <div className="search-content">
-          <p>blah blah blah</p>
+          <div className= "image">
+          <img src = "/utcwalk.jpeg" alt = "walk"/>
+          </div>
+          <div className = "Description">
+          <p>Description of Walk</p>
+          </div>
         </div>
       </div>
     </div>
