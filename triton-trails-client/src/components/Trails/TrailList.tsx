@@ -23,9 +23,9 @@ const TrailList = () => {
         {trails.map((trail: Trail) => (
         <div>
             {/* <h2>{trail.id}</h2> */}
-            <p>{trail.name}</p>
+            <p style={{marginTop: '-60px', fontSize: '1em', fontWeight: 'bold', fontFamily: 'roboto'}}>{trail.name}</p>
             <img src={trail.image} alt={trail.name} style={{ width: '200px' }} /> 
-            <p>{trail.description}</p>      
+            <p style = {{marginBottom: '90px', fontSize: '1em', fontFamily: 'roboto'}}>{trail.description}</p>      
             </div>
             
         ))}
