@@ -16,8 +16,8 @@ function App() {
           <Search />
         </header>
         <div>
-          <h1>Weather</h1>
-          <WeatherDisplay />
+          {/* <h1>Weather</h1>
+          <WeatherDisplay /> */}
         </div>
         <AddTrailForm />
       </div>

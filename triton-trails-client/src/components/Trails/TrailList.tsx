@@ -22,13 +22,14 @@ const TrailList = () => {
     <ul className="list-group">
         {trails.map((trail: Trail) => (
         <div>
-            <h2>{trail.id}</h2>
+            {/* <h2>{trail.id}</h2> */}
             <p>{trail.name}</p>
-            <p>{trail.description}</p>
-            <img src={trail.image} alt={trail.name} style={{ width: '200px' }} />        </div>
+            <img src={trail.image} alt={trail.name} style={{ width: '200px' }} /> 
+            <p>{trail.description}</p>      
+            </div>
+            
         ))}
     </ul>
   );
 };
-
 export default TrailList;

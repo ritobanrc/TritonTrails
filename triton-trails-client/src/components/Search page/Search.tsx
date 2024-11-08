@@ -9,7 +9,9 @@ const Search = () => {
         <div className="box">
           <div className="rounded-div">
           <div className="search-content">
+            <div className = "ListTrails">
           <TrailList /> 
+          </div>
           </div>
         </div>
       </div>

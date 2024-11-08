@@ -1,8 +1,8 @@
 export type Trail = {
     id: number,
     name: string,
-    description: string,
     image: string,
+    description: string,
 };
 export type Geometry = {
     type: "Polygon";

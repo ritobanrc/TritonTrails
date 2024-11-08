@@ -8,8 +8,8 @@ import { createTrail } from "../../utils/trail-utils";
 const AddTrailForm = () => {
   const { trails, setTrails } = useContext(AppContext);
   const [name, setName] = useState("");
-  const [description, setDescription] = useState("");
   const [image, setImage] = useState("")
+  const [description, setDescription] = useState("");
 
   const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -17,14 +17,14 @@ const AddTrailForm = () => {
     const newTrail : Trail = {
       id: trails.length+1,  //magic number one: !id in server util checked is true if first trail
       name: name as string,
+      image: image,
       description: description as string,
-      image: image
     }
     setTrails([...trails, newTrail]);
     // clear input fields
     setName("");
-    setDescription("");
     setImage("");
+    setDescription("");
     createTrail(newTrail);
   }
 
@@ -47,14 +47,14 @@ const AddTrailForm = () => {
       onChange={(e) => setName(e.target.value)}
       placeholder="Trail name"
     />
+    <input type="file" onChange={handleImageChange} accept="image/*" />
+    <button type="submit">Create Trail</button>
+    {image && <img src={image} alt="Preview" style={{ width: "100px", height: "100px" }} />}
     <textarea
       value={description}
       onChange={(e) => setDescription(e.target.value)}
       placeholder="Trail description"
     />
-    <input type="file" onChange={handleImageChange} accept="image/*" />
-    <button type="submit">Create Trail</button>
-    {image && <img src={image} alt="Preview" style={{ width: "100px", height: "100px" }} />}
   </form>
   );
 };
