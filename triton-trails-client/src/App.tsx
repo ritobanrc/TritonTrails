@@ -19,8 +19,7 @@ function App() {
           <h1>Weather</h1>
           <WeatherDisplay />
         </div>
-        <AddTrailForm /> 
-        <TrailList />
+        <AddTrailForm />
       </div>
     </AppProvider>
   );

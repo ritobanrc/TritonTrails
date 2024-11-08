@@ -1,5 +1,6 @@
 import React from 'react';
 import './Search.css';
+import TrailList from '../Trails/TrailList';
 
 const Search = () => {
   return (
@@ -7,16 +8,8 @@ const Search = () => {
         <h1 className="search-header">Top results</h1>
         <div className="box">
           <div className="rounded-div">
-            <div className = "title">
-              Westfield UTC 
-              </div>
           <div className="search-content">
-            <div className= "image">
-              <img src = "/utcwalk.jpeg" alt = "walk" className="image-border"/>
-            </div>
-            <div className = "Description">
-            <p>Description of Walk</p>
-            </div>
+          <TrailList /> 
           </div>
         </div>
       </div>
