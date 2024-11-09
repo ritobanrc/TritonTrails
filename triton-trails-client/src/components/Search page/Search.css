@@ -9,15 +9,6 @@
     text-align: left;
     padding: 0px 20px;
 }
-.box{
-    flex-direction: column;
-}
-.rounded-div{
-    background-color: #E7F7FF;
-    border-radius: 20px;
-    margin: 5px 20px;
-    padding: 30px;
-}
 .title
 {
     color: black;
@@ -29,31 +20,6 @@
     font-family: 'roboto';
     /* Just some formatting / design stuff */
     font-size: 1.3em;
-}
-.image
-{
-    
-    text-align: left;
-}
-.image-border
-{
-    border: 1px solid #0A2239;
-    border-radius: 10px;
-}
-
-.search-content
-{
-    margin-top: 50px; 
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    gap: 20px;
-}
-.ListTrails
-{
-    color: black;
-    max-width: 300px;
-
 }
 .Description
 {
