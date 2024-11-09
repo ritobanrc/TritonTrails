@@ -1,8 +1,8 @@
-import { Trail } from "../types/types";
+//import { Trail } from "../types/types";
 import { Request, Response } from "express";
-import { Database } from "sqlite";
+import { Sequelize } from "sequelize";
 
-export async function createTrailServer(req: Request, res: Response, db:Database) {
+export async function createTrailServer(req: Request, res: Response, db:Sequelize) {
     //const { id, name, description, image } = req.body;
 
     try {
@@ -17,7 +17,14 @@ export async function createTrailServer(req: Request, res: Response, db:Database
             return res.status(400).send({ error: "Missing required fields" });
         }
         console.log("running command")
-        await db.run('INSERT INTO trails (id, name, description, image) VALUES (?, ?, ?, ?);', [id, name, description, image]);
+
+        await db.models.Trail.create({
+          id: id,
+          name: name,
+          description: description,
+          image: image
+        });
+
         res.status(201).send({ id, name, description, image });
 
     } catch (error) {
@@ -26,9 +33,9 @@ export async function createTrailServer(req: Request, res: Response, db:Database
     };
 }
 
-export async function getTrails(req: Request, res: Response, db: Database) {
+export async function getTrails(req: Request, res: Response, db: Sequelize) {
     try {
-        const trails = await db.all("SELECT * from trails")
+        const trails = await db.models.Trail.findAll();
         res.status(200).send({"data": trails})
 
     } catch (error) {

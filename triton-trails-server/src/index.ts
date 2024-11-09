@@ -1,4 +1,4 @@
-import { Response } from "express";
+import { Request, Response } from "express";
 import { createTrailsEndpoints } from "./utils/trails-endpoints";
 import initDB from "./createTable";
 import bodyParser from 'body-parser';
@@ -26,14 +26,13 @@ app.listen(port, () => {
 
 // Initialize the database and start the server
 (async () => {
- const db = await initDB();
+    const db = await initDB();
 
- // Root endpoint to get test if the server is running
- app.get("/", (res: Response) => {
-  //  res.send({ "data": "Hello, TypeScript Express!" });
-   res.status(200);
- });
+    // Root endpoint to get test if the server is running
+    app.get("/", (req: Request, res: Response) => {
+        res.status(200).send("This page is intentionally blank.");
+    });
 
-createTrailsEndpoints(app, db);
+    createTrailsEndpoints(app, db);
 
 })();
