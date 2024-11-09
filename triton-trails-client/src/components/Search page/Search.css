@@ -7,12 +7,24 @@
     color: #0A2239;
     font-size: 1.4em;
     text-align: left;
-    padding: 5px 20px;
+    padding: 0px 20px;
 }
-
-.rounded-div{
-    background-color: #E7F7FF;
-    border-radius: 20px;
-    margin: 5px 20px;
-    padding: 20px;
+.title
+{
+    color: black;
+    font-weight: bold;
+    position: absolute;
+    text-align: left;
+    font-size: xx-large;
+    font-stretch:extra-expanded;
+    font-family: 'roboto';
+    /* Just some formatting / design stuff */
+    font-size: 1.3em;
+}
+.Description
+{
+    text-align: left;
+    color: black;
+    font-family: 'roboto';
+    font-size: 1.0em;
 }

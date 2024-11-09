@@ -15,7 +15,6 @@
     font-family: 'Marmelad';
   }
 
-
 .App-header {
   background-color: #77BDCE;
   min-height: 100vh;
@@ -24,7 +23,6 @@
   font-size: calc(5px + 2vmin);
   color: white;
 }
-
 body {
   font-family: 'Marmelad';
 }
