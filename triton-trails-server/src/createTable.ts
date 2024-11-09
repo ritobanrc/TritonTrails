@@ -42,6 +42,26 @@ const initDB = async () => {
             timestamps: false
         }
     );
+    const Image = sequelize.define(
+        'Image',
+        {
+            id: {
+                type: DataTypes.INTEGER,
+                autoIncrement: true,
+                primaryKey: true,
+            },
+            image: {
+                type: DataTypes.BLOB,
+                allowNull: false,
+            }
+        },
+        {
+            timestamps: false
+        }
+    );
+    Trail.hasMany(Image);  // creates a TrailId column in the Image table
+
+    await sequelize.sync();
 
 
     return sequelize;
