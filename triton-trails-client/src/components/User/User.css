@@ -1,0 +1,68 @@
+.user-profile {
+    background-color: #E7F7FF;
+    padding: 20px;
+    padding-top: 30px;
+    padding-bottom: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .avatar {
+    width: 60px;
+    height: 60px;
+    /* Circle avatar, no picture for now */
+    border-radius: 50%;
+    background-color: #80B9D1;
+    padding: 10px;
+    margin-bottom: auto;
+  }
+  .user-info{
+    margin-right: auto;
+    text-align: left;
+    padding-left: 30px;
+  }
+  
+  .user-info h2 {
+    font-size: 1.5em;
+    font-family: 'Marmelad';
+    margin: 0;
+    color: #0A2239;
+  }
+  
+  .user-info a {
+    color: #15577A;
+    text-decoration: none;
+    font-size: 0.9em;
+    font-family: 'Roboto';
+  }
+  .user-info p {
+    color: #0A2239;
+    text-decoration: none;
+    font-size: 0.7em;
+    font-family: 'Roboto';
+  }
+  
+  .user-actions {
+    margin-bottom: auto;
+    display: flex;
+    gap: 10px;
+  }
+  .add-trail-button,
+  .edit-profile-button,
+  .settings-button {
+    background-color: #1788BC;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.8em;
+    font-family: 'Roboto';
+  }
+  .add-trail-button:hover,
+  .edit-profile-button:hover,
+  .settings-button:hover {
+    background-color: #15577A;
+  }
+  

@@ -2,10 +2,11 @@ import React from "react";
 import "./App.css";
 import { AppProvider } from "./context/AppContext";
 import AddTrailForm from "./components/Trails/AddTrailForm";
-import TrailList from "./components/Trails/TrailList"; // Import the form component
 import Navbar from "./components/Navbar/Navbar";
 import Search from "./components/Search page/Search";
 import WeatherDisplay from "./components/Weather/Weather";
+import { Route, Routes } from "react-router-dom";
+import User from "./components/User/User";
 
 function App() {
   return (
@@ -13,13 +14,16 @@ function App() {
       <div className="App">
         <header className="App-header">
           <Navbar />
-          <Search />
+          <Routes>
+            <Route path="/" element={<Search/>}/>
+            <Route path="/profile" element={<User/>}/>
+            <Route path="/add-trail-form" element={<AddTrailForm />}/>
+          </Routes>
         </header>
         <div>
           {/* <h1>Weather</h1>
           <WeatherDisplay /> */}
         </div>
-        <AddTrailForm />
       </div>
     </AppProvider>
   );

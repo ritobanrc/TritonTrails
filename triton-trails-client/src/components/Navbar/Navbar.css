@@ -4,6 +4,10 @@
     width: 100%;
     background-color: #0A2239;
     color: #C4DFE9;
+    height: 80px;
+    display: flex; 
+    align-items: center;
+    justify-content: space-between;
 }
 
 .navbar-content {
@@ -20,6 +24,11 @@
     font-family: 'Marmelad';
     padding-left: 20px;
     z-index: 3; 
+    color: #C4DFE9;
+    text-decoration: none;
+}
+.navbar-logo:hover {
+    color: #51B4E1;
 }
 
 .NavBanner {
@@ -66,12 +75,15 @@
     padding-right: 20px;
     z-index: 3;
 }
-
 .menu-bar {
     width: 25px;
     height: 3px;
     background-color: white;
     margin: 3px 0;
+}
+
+.navbar-menu-icon:hover .menu-bar{
+    background-color: #51B4E1;
 }
 
 
