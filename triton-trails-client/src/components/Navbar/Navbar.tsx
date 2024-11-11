@@ -1,6 +1,7 @@
 import React from 'react';
 import './Navbar.css';
 import { Link } from "react-router-dom";
+import Menu from "../Menu/Menu";
 
 const Navbar = () => {
   return (
@@ -16,13 +17,9 @@ const Navbar = () => {
             <li><a href="#wishlist">Wishlist</a></li>
             <li><a href="#login">Login</a></li>
           </ul>
-          <Link to="/profile" className="menu-link">
-            <div className="navbar-menu-icon">
-                <span className="menu-bar"></span>
-                <span className="menu-bar"></span>
-                <span className="menu-bar"></span>
-            </div>
-          </Link>
+          <div className="navbar-menu-icon">
+            <Menu /> {/* Menu component inside the icon container */}
+          </div>
         </div>
       </div>
     </nav>

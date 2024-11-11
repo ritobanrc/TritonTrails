@@ -8,6 +8,8 @@ import WeatherDisplay from "./components/Weather/Weather";
 import { Route, Routes } from "react-router-dom";
 import User from "./components/User/User";
 
+// make sure to npm install react-router-dom
+
 function App() {
   return (
     <AppProvider>
