@@ -15,7 +15,7 @@ const Navbar = () => {
           <ul className="navbar-links">
             <li><Link to="/">Explore</Link></li>
             <li><a href="#wishlist">Wishlist</a></li>
-            <li><a href="#login">Login</a></li>
+            <li><a href="/login">Login</a></li> {/* I altered the '#'' to a '/'' for login, might be neccesary for other links  */}
           </ul>
           <div className="navbar-menu-icon">
             <Menu /> {/* Menu component inside the icon container */}
