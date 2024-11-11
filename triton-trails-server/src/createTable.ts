@@ -8,16 +8,6 @@ const initDB = async () => {
       storage: 'database.sqlite'
     });
 
-    //await db.exec(`
-    //CREATE TABLE IF NOT EXISTS trails (
-        //id TEXT PRIMARY KEY,
-        //name TEXT NOT NULL,
-        //description TEXT NOT NULL,
-        //image TEXT
-    //);
-    //`);
-
-
     const Trail = sequelize.define(
         'Trail',
         {
@@ -51,7 +41,7 @@ const initDB = async () => {
                 primaryKey: true,
             },
             image: {
-                type: DataTypes.BLOB,
+                type: DataTypes.BLOB('long'),
                 allowNull: false,
             }
         },
@@ -60,8 +50,52 @@ const initDB = async () => {
         }
     );
     Trail.hasMany(Image);  // creates a TrailId column in the Image table
+    Image.belongsTo(Trail);  
+
+    const User = sequelize.define(
+        'User',
+        {
+            id: {
+                type: DataTypes.INTEGER,
+                autoIncrement: true,
+                primaryKey: true,
+            },
+            username: {
+                type: DataTypes.STRING,
+                allowNull: false,
+            },
+            displayName: {
+                type: DataTypes.STRING,
+                allowNull: false,
+            },
+            passwordHash: {
+                type: DataTypes.STRING,
+                allowNull: false,
+            },
+            passwordSalt: {
+                type: DataTypes.STRING,
+                allowNull: false,
+            },
+        },
+        {
+            timestamps: false
+        }
+    );
+    User.belongsToMany(Trail, { through: 'User_Trails', timestamps: false });
+    Trail.belongsToMany(User, { through: 'User_Trails',  timestamps: false  });
 
     await sequelize.sync();
+
+
+    //const trail = await Trail.create({
+      //name: "foo",
+      //description: "",
+    //});
+
+    //const img = await Image.create({
+        //image: "hello world",
+    //});
+    //trail.addImage(img);
 
 
     return sequelize;

@@ -15,12 +15,13 @@ const AddTrailForm = () => {
     event.preventDefault();
 
     const newTrail : Trail = {
+        // TODO: get rid of this, the database auto-increments IDs
       id: trails.length+1,  //magic number one: !id in server util checked is true if first trail
       name: name as string,
       image: image,
       description: description as string,
     }
-    setTrails([...trails, newTrail]);
+    setTrails([...trails, newTrail]); // TODO: just do a re-fetch from the database (really, this eventually won't matter at all, because the "add trail" page should not be displaying other trails)
     // clear input fields
     setName("");
     setImage("");
