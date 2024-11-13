@@ -15,3 +15,19 @@ jobs: # the things being executed
        run: npm install
      - name: Unit Test
        run: npm test # the actual testing line
+     - name: Install Dependencies (Server)
+       working-directory: ./triton-trails-server  # Change to the server directory before installing
+       run: npm install
+
+     - name: Run Server Tests
+       working-directory: ./triton-trails-server
+       run: npm test
+
+     - name: Install Dependencies (Client)
+       working-directory: ./triton-trails-client  # Change to the client directory before installing
+       run: npm install
+
+     - name: Run Client Tests
+       working-directory: ./triton-trails-client
+       run: npm test
+
