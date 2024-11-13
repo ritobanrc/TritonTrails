@@ -4,6 +4,13 @@ export type Trail = {
     image: string,
     description: string,
 };
+export type User = {
+    id: number;
+    username: string;
+    displayName: string;
+    passwordHash: string;
+    passwordSalt: string;
+};
 export type Geometry = {
     type: "Polygon";
     coordinates: number[][][];

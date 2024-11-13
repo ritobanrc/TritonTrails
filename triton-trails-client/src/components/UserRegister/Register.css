@@ -5,7 +5,7 @@ body {
 }
 
 /* Container for login, centered and scaled appropriately */
-.login-container {
+.register-container {
     width: 400px; /* Slightly larger than before */
     margin: 100px auto;
     padding: 30px; /* Increased padding */
@@ -14,7 +14,7 @@ body {
     box-shadow: 0 5px 10px rgba(0,0,0,0.1);
 }
 
-.sign-in {
+.register {
     font-family: 'Marmelad';
     color: black;
     text-align: left;
@@ -51,13 +51,4 @@ body {
     align-items: center;
     font-size: 0.8em; /* Slightly larger text */
     margin-top: 10px;
-}
-
-.extra-options span {
-    color: black;
-}
-
-.extra-options a {
-    color: #0077CC;
-    text-decoration: none;
 }

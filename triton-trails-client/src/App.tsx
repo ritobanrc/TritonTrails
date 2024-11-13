@@ -5,6 +5,7 @@ import AddTrailForm from "./components/Trails/AddTrailForm";
 import Navbar from "./components/Navbar/Navbar";
 import Search from "./components/Search page/Search";
 import Login from "./components/UserLogin/Login"
+import Register from "./components/UserRegister/Register";
 import WeatherDisplay from "./components/Weather/Weather";
 import { Route, Routes } from "react-router-dom";
 import User from "./components/UserProfile/User";
@@ -22,6 +23,7 @@ function App() {
             <Route path="/profile" element={<User/>}/>
             <Route path="/add-trail-form" element={<AddTrailForm />}/>
             <Route path="/login" element={<Login/>}/>
+            <Route path="/create-account" element={<Register/>}/>
           </Routes>
         </header>
         <div>
