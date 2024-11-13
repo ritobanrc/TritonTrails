@@ -1,0 +1,62 @@
+/* Got the transition stuff from Chatgpt */
+.menu-content {
+    position: fixed;
+    top: 0;
+    right: -300px; /* Start the menu off-screen */
+    width: 250px;
+    height: 100%;
+    background-color: #0A2239;
+    color: #C4DFE9;
+    transition: right 0.3s ease; /* Smooth transition */
+    z-index: 100;
+    padding: 10px;
+}
+
+.open {
+    right: 0; /* Slide the navbar in when the class 'open' is added */
+}
+.menu-header{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    padding: 15px;
+    padding-bottom: 10px;
+    align-items: center;
+}
+.menu-avatar{
+    width: 40px;
+    height: 40px;
+    /* Circle avatar, no picture for now */
+    border-radius: 50%;
+    background-color: #1E7CAE;
+    margin-bottom: auto;
+}
+.menu-my-account a {
+    font-family: 'Roboto';
+    color: #C4DFE9;
+    text-decoration: none;
+    font-size: 1em;
+}
+.menu-my-account a:hover {
+    color: #51B4E1;
+}
+
+.menu-links {
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    gap: 20px;
+    padding: 0px 20px;
+}
+
+.menu-links a {
+    color: #C4DFE9;
+    text-decoration: none;
+    font-size: 1em;
+    font-family: 'Roboto';
+}
+
+.menu-links a:hover {
+    color: #51B4E1;
+}

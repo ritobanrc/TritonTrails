@@ -1,0 +1,54 @@
+/* Base styles for overall scaling */
+body {
+    font-family: 'Roboto', sans-serif;
+    background: #E6EFF9; /* Consistent light blue background */
+}
+
+/* Container for login, centered and scaled appropriately */
+.register-container {
+    width: 400px; /* Slightly larger than before */
+    margin: 100px auto;
+    padding: 30px; /* Increased padding */
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+}
+
+.register {
+    font-family: 'Marmelad';
+    color: black;
+    text-align: left;
+    font-size: 1.8em;
+}
+
+/* Input field styling, larger and easier to interact with */
+.input-field {
+    width: 90%;
+    padding: 12px; /* Larger padding */
+    margin-bottom: 20px; /* More space between fields */
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    font-size: 1.1em; /* Larger text in inputs */
+}
+
+/* Button styling, even with input */
+.button {
+    width: 98%;
+    font-family: 'Roboto';
+    padding: 12px;
+    border-radius: 5px;
+    font-size: 1.1em;
+    color: white;
+    background: #0077CC;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+/* Style adjustments for the registration prompt */
+.extra-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.8em; /* Slightly larger text */
+    margin-top: 10px;
+}

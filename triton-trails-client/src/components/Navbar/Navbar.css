@@ -4,6 +4,10 @@
     width: 100%;
     background-color: #0A2239;
     color: #C4DFE9;
+    height: 80px;
+    display: flex; 
+    align-items: center;
+    justify-content: space-between;
 }
 
 .navbar-content {
@@ -20,6 +24,11 @@
     font-family: 'Marmelad';
     padding-left: 20px;
     z-index: 3; 
+    color: #C4DFE9;
+    text-decoration: none;
+}
+.navbar-logo:hover {
+    color: #51B4E1;
 }
 
 .NavBanner {
@@ -31,11 +40,11 @@
 }
 
 .navbar-right {
-    display: flex; 
+    display: flexbox; 
     align-items: center;
     margin-left: auto;
     z-index: 3; 
-    margin-left: auto; /* Pushes this section to the right */
+    padding-right: 40px;
 }
 
 .navbar-links {
@@ -58,19 +67,24 @@
 .navbar-links a:hover {
     color: #51B4E1;
 }
-
+/* IDK why this is not inheriting from Navbar and staying centered so I'm just hard-coding it*/
 .navbar-menu-icon {
     display: flex;
     flex-direction: column;
     cursor: pointer;
-    padding-right: 20px;
-    z-index: 3;
+    position: fixed; /* Position fixed to stay visible at all times */
+    top: 20px;
+    padding-top: 7px;
+    right: 20px; /* Place the icon on the right side */
+    z-index: 101; /* Ensure the menu icon is on top */
 }
-
+.navbar-menu-icon:hover .menu-bar{
+    background-color: #51B4E1;
+}
 .menu-bar {
     width: 25px;
     height: 3px;
-    background-color: white;
+    background-color: #C4DFE9;
     margin: 3px 0;
 }
 
