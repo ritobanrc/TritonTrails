@@ -1,13 +1,18 @@
 .search-page{
     padding: 20px;
 }
-
 .search-header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0px 20px;
+}
+
+.all-results{
     font-family: 'Marmelad';
     color: #0A2239;
     font-size: 1.4em;
     text-align: left;
-    padding: 0px 20px;
 }
 .title
 {
