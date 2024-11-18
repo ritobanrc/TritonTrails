@@ -31,7 +31,7 @@ const Login = () => {
       <button className="button sign-in-button">Login</button>
       <div className="extra-options">
       <span>Don't have an account?</span>
-      <Link to="create-account"> Register now </Link>
+      <Link to="/create-account"> Register now </Link>
       </div>
     </div>
   );
