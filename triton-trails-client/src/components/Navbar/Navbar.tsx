@@ -17,7 +17,7 @@ const Navbar = () => {
             <li><a href="#wishlist">Wishlist</a></li>
             <li><a href="/login">Login</a></li> {/* I altered the '#'' to a '/'' for login, might be neccesary for other links  */}
           </ul>
-          <div className="navbar-menu-icon">
+          <div>
             <Menu /> {/* Menu component inside the icon container */}
           </div>
         </div>

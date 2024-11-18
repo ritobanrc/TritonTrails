@@ -1,3 +1,14 @@
+/* IDK why this is not inheriting from Navbar and staying centered so I'm just hard-coding it*/
+.navbar-menu-icon {
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    position: absolute; 
+    top: 50%; /* Vertically center */
+    right: 13px; /* Align to the right side */
+    transform: translateY(-50%); /* Adjust to truly center the icon vertically */
+    z-index: 101; /* Ensure the menu icon is on top */
+}
 /* Got the transition stuff from Chatgpt */
 .menu-content {
     position: fixed;

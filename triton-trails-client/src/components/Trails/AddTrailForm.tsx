@@ -4,6 +4,7 @@ import { AppContext } from "../../context/AppContext";
 import { Trail } from "../../types/types";
 // Import the createExpense function
 import { createTrail } from "../../utils/trail-utils"; 
+import './AddTrailForm.css';
 
 const AddTrailForm = () => {
   const { trails, setTrails } = useContext(AppContext);
@@ -41,22 +42,37 @@ const AddTrailForm = () => {
   }
 
   return (
-    <form onSubmit={onSubmit}>
-    <input
-      type="text"
-      value={name}
-      onChange={(e) => setName(e.target.value)}
-      placeholder="Trail name"
-    />
-    <input type="file" onChange={handleImageChange} accept="image/*" />
-    <button type="submit">Create Trail</button>
-    {image && <img src={image} alt="Preview" style={{ width: "100px", height: "100px" }} />}
-    <textarea
-      value={description}
-      onChange={(e) => setDescription(e.target.value)}
-      placeholder="Trail description"
-    />
-  </form>
+    // copy setup from Search page
+    <div className="addTrailForm page">
+      <h1 className="page-header-text">Add Your Own Trail</h1>
+      <div className="rounded-div">
+        <form onSubmit={onSubmit}>
+          <div className="rounded-div-content">
+            <div className="flex-row">
+              <input className="input-field-2"
+                type="text"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                placeholder="Trail name"
+              />
+              <a href="#" className="location-link">Select the location</a>
+            </div>
+            {/* Image upload */}
+            <div>
+              <input type="file" onChange={handleImageChange} accept="image/*" />
+            </div>
+            {/* Description */}
+            <textarea className="input-field-3"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              placeholder="Trail description"
+            />
+            <button className="add-trail-button align-right" type="submit">Create Trail</button>
+            {image && <img className="add-trail-img" src={image} alt="Preview" style={{ width: "100px", height: "100px" }} />}
+          </div>
+        </form>
+      </div>
+    </div>
   );
 };
 
