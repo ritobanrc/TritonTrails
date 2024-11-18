@@ -5,9 +5,9 @@ import { Link } from "react-router-dom";
 
 const Search = () => {
   return (
-    <div className="search-page">
-      <div className="search-header">
-      <h1 className="all-results">All results:</h1>
+    <div className="page">
+      <div className="page-header">
+      <h1 className="page-header-text">All results:</h1>
       <Link to="/add-trail-form">
         <button className="add-trail-button">Add Your Own Trail</button>
       </Link>

@@ -1,35 +1,15 @@
-.search-page{
+.page{
     padding: 20px;
 }
-.search-header{
+.page-header{
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 0px 20px;
 }
-
-.all-results{
+.page-header-text{
     font-family: 'Marmelad';
     color: #0A2239;
     font-size: 1.4em;
     text-align: left;
-}
-.title
-{
-    color: black;
-    font-weight: bold;
-    position: absolute;
-    text-align: left;
-    font-size: xx-large;
-    font-stretch:extra-expanded;
-    font-family: 'roboto';
-    /* Just some formatting / design stuff */
-    font-size: 1.3em;
-}
-.Description
-{
-    text-align: left;
-    color: black;
-    font-family: 'roboto';
-    font-size: 1.0em;
 }
