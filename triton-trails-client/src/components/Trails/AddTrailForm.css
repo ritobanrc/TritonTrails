@@ -1,0 +1,76 @@
+.addTrailForm {
+    box-sizing: border-box;
+    border-radius: 15px;
+    padding: 20px 30px;
+    width: 100%;
+    font-family: 'Roboto';
+}
+.rounded-div-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.input-field-2, .input-field-3 {
+    box-sizing: border-box; /* Ensure padding and border are included in the width */
+}
+
+.input-field-2 {
+    width: 50%;
+    padding: 12px;
+    margin-bottom: 10px;
+    border: 2px solid #51B4E1;
+    border-radius: 5px;
+    font-size: 1.1em;
+    background-color: #fff; /* White background for inputs */
+    color: #333;
+}
+.input-field-3 {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 10px;
+    border: 2px solid #51B4E1;
+    border-radius: 5px;
+    font-size: 1.1em;
+    font-family: 'Roboto';
+    background-color: #fff; /* White background for inputs */
+    color: #333;
+    height: 200px; /* Adjust height for description field */
+    resize: none; /* Disable resizing */
+}
+
+input[type="file"] {
+    display: block;
+    font-size: 1em;
+    color: #0A2239;
+    margin-top: 10px;
+    border: none;
+    background: none;
+}
+.add-trail-img {
+    margin-top: 10px;
+    border: 2px dashed #ccc; /* Dashed border for preview */
+    border-radius: 5px;
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+}
+.flex-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.flex-row .location-link {
+    color: #1E7CAE; /* Blue link color */
+    font-size: 0.9em;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.location-link:hover {
+    color: #0A2239; /* Darker hover effect */
+}
+.align-right{
+    margin-left: auto;
+    width: 200px;
+}
+
