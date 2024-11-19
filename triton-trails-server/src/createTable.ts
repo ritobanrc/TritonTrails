@@ -1,107 +1,3 @@
-// import sqlite3 from "sqlite3";
-// import { Sequelize, DataTypes } from "sequelize";
-// import { open } from "sqlite";
-
-// const initDB = async () => {
-//     const sequelize = new Sequelize({
-//       dialect: 'sqlite',
-//       storage: 'database.sqlite'
-//     });
-
-//     const Trail = sequelize.define(
-//         'Trail',
-//         {
-//             id: {
-//                 type: DataTypes.INTEGER,
-//                 autoIncrement: true,
-//                 primaryKey: true,
-//             },
-//             name: {
-//                 type: DataTypes.STRING,
-//                 allowNull: false,
-//             },
-//             description: {
-//                 type: DataTypes.STRING,
-//                 allowNull: false,
-//             },
-//             image: {
-//                 type: DataTypes.STRING,
-//             }
-//         }, 
-//         {
-//             timestamps: false
-//         }
-//     );
-//     const Image = sequelize.define(
-//         'Image',
-//         {
-//             id: {
-//                 type: DataTypes.INTEGER,
-//                 autoIncrement: true,
-//                 primaryKey: true,
-//             },
-//             image: {
-//                 type: DataTypes.BLOB('long'),
-//                 allowNull: false,
-//             }
-//         },
-//         {
-//             timestamps: false
-//         }
-//     );
-//     Trail.hasMany(Image);  // creates a TrailId column in the Image table
-//     Image.belongsTo(Trail);  
-
-//     export const User = sequelize.define(
-//         'User',
-//         {
-//             id: {
-//                 type: DataTypes.INTEGER,
-//                 autoIncrement: true,
-//                 primaryKey: true,
-//             },
-//             username: {
-//                 type: DataTypes.STRING,
-//                 allowNull: false,
-//             },
-//             displayName: {
-//                 type: DataTypes.STRING,
-//                 allowNull: false,
-//             },
-//             passwordHash: {
-//                 type: DataTypes.STRING,
-//                 allowNull: false,
-//             },
-//             passwordSalt: {
-//                 type: DataTypes.STRING,
-//                 allowNull: false,
-//             },
-//         },
-//         {
-//             timestamps: false
-//         }
-//     );
-//     User.belongsToMany(Trail, { through: 'User_Trails', timestamps: false });
-//     Trail.belongsToMany(User, { through: 'User_Trails',  timestamps: false  });
-
-//     await sequelize.sync();
-
-
-//     //const trail = await Trail.create({
-//       //name: "foo",
-//       //description: "",
-//     //});
-
-//     //const img = await Image.create({
-//         //image: "hello world",
-//     //});
-//     //trail.addImage(img);
-
-
-//     return sequelize;
-// };
-
-// export default initDB;
 import { Sequelize, DataTypes, Model, Optional } from 'sequelize';
 
 const sequelize = new Sequelize({
@@ -129,10 +25,21 @@ interface ImageAttributes {
     image: Buffer;
     TrailId?: number;
 }
+interface RouteAttributes
+{
+    id?: number; 
+    startLatitude: number; 
+    startLongitude: number; 
+    endLatitude: number; 
+    endLongitude: number; 
+    TrailId?: number
+
+}
 
 interface UserCreationAttributes extends Optional<UserAttributes, 'id'> {}
 interface TrailCreationAttributes extends Optional<TrailAttributes, 'id'> {}
 interface ImageCreationAttributes extends Optional<ImageAttributes, 'id'> {}
+interface RouteCreation extends Optional<RouteAttributes, 'id'>{}
 class User extends Model<UserAttributes, UserCreationAttributes> implements UserAttributes {
     public id!: number;
     public username!: string;
@@ -177,6 +84,8 @@ class Trail extends Model<TrailAttributes, TrailCreationAttributes> implements T
     public name!: string;
     public description!: string;
     public image?: string;
+    // public latitude!: number; 
+    // public longitude!: number; 
 }
 
 Trail.init(
@@ -197,6 +106,16 @@ Trail.init(
         image: {
             type: DataTypes.STRING,
         },
+        // latitude:
+        // {
+        //     type:DataTypes.DOUBLE, 
+        //     allowNull: false,
+        // },
+        // longitude:
+        // {
+        //     type:DataTypes.DOUBLE,
+        //     allowNull: false, 
+        // },
     },
     {
         sequelize,
@@ -228,19 +147,64 @@ Image.init(
         timestamps: false,
     }
 );
-
+class Route extends Model<RouteAttributes, RouteCreation> implements RouteAttributes{
+    public id!: number;
+    public startLatitude!: number;
+    public startLongitude!: number;
+    public endLatitude!: number;
+    public endLongitude!: number;
+    public TrailId?: number;
+}
+Route.init(
+    {
+        id: {
+            type: DataTypes.INTEGER,
+            autoIncrement: true,
+            primaryKey: true,
+        },
+        startLatitude: {
+            type: DataTypes.DOUBLE,
+            allowNull: false,
+        },
+        startLongitude: {
+            type: DataTypes.DOUBLE,
+            allowNull: false,
+        },
+        endLatitude: {
+            type: DataTypes.DOUBLE,
+            allowNull: false,
+        },
+        endLongitude: {
+            type: DataTypes.DOUBLE,
+            allowNull: false,
+        },
+        TrailId: {
+            type: DataTypes.INTEGER,
+            references: {
+                model: 'Trail', //this will link a trail to a map 
+                key: 'id',
+            },
+            onDelete: 'CASCADE',
+        },
+    },
+    {
+        sequelize,
+        modelName: 'Route',
+        timestamps: false,
+    }
+);
 Trail.hasMany(Image);         
 Image.belongsTo(Trail);   
 
 User.belongsToMany(Trail, { through: 'User_Trails', timestamps: false }); 
 Trail.belongsToMany(User, { through: 'User_Trails', timestamps: false }); 
 
-export { sequelize, User, Trail, Image };
+export { sequelize, User, Trail, Image, Route };
 
 export const initDB = async () => {
     await sequelize.sync();
     console.log('Database synchronized');
-    return { sequelize, User, Trail, Image };
+    return { sequelize, User, Trail, Image, Route };
 };
 
 export default initDB;
