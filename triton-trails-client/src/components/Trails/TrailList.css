@@ -1,40 +1,77 @@
-.box{
-    flex-direction: column;
-}
-.search-content
-{
+.rounded-div {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    margin: 10px;
+    padding: 20px;
+    box-sizing: border-box; /* Ensure padding and border are included in width/height */
+}
+
+.trail-details {
+    display: flex;
+    flex-wrap: wrap; /* Allow wrapping for responsiveness */
+    justify-content: space-between; /* Space elements nicely */
     width: 100%;
+    align-items: stretch; /* Ensures children (image and map) stretch to match each other's height */
 }
-.ListTrails
-{
-    color: black;
-    flex: 1;
-    max-width: 100%;
+
+.trail-visuals {
+    display: flex;
+    width: 100%;
+    align-items: stretch; /* Keep image and map at equal heights */
+    margin-bottom: 10px; /* Space between visuals and description */
 }
-.rounded-div{
-    background-color: #E7F7FF;
-    border-radius: 20px;
-    margin: 30px 20px;
-    padding: 30px;
-    box-sizing: border-box;
-    align-items: center;
+
+.trail-content, .trail-map {
+    max-height: 600px;
+    flex: 1; /* Share the space equally */
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #ccc; /* Light grey border around content and map */
+    border-radius: 8px; /* Rounded corners for both elements */
+    overflow: hidden; /* Prevents content from spilling outside the border */
+    margin-right: 10px; /* Space between image and map */
 }
-.trail-name {
-    font-size: 1em;
-    font-weight: bold;
-    font-family: 'Roboto', sans-serif;
+
+.trail-content {
+    margin-right: 10px; /* Only between image and map, remove if not needed */
 }
 
 .trail-image {
-    width: 200px;
-    border: 1px solid #0A2239;
-    border-radius: 10px;
+    width: 100%;
+    height: auto;
+    object-fit: cover; /* Ensures the image covers the area without distortion */
+    border-bottom: 1px solid #ccc; /* Separates image from text in the same block */
+}
+
+.trail-map iframe {
+    width: 100%;
+    height: 100%; /* Adjust height to fill the container */
+    border: none;
+}
+
+.trail-name, .trail-description {
+    font-size: 30px; /* Adjusted for readability */
+    font-weight: bold; /* Only name is bold, remove from description if needed */
+    color: #333; /* Darker text for better readability */
+    padding: 10px 0; /* Padding for name and description */
     text-align: left;
 }
+
 .trail-description {
-    margin-bottom: 30px;
-    font-size: 1em;
-    font-family: 'Roboto', sans-serif;
+    font-size: 16px; /* Smaller than name for hierarchy */
+    font-weight: normal; /* Not bold */
+    color: #666; /* Lighter text for description */
+}
+
+@media (max-width: 768px) {
+    .trail-details, .trail-visuals {
+        flex-direction: column; /* Stack vertically on smaller screens */
+    }
+
+    .trail-content, .trail-map {
+        margin-right: 0; /* Remove right margin on smaller screens */
+    }
 }
