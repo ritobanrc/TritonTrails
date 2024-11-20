@@ -17,12 +17,13 @@ export const createUser = async (user: {}): Promise<User> => {
 };
 
 // Function to find User from the backend. Method: POST
-export const fetchUser = async (user: {}): Promise<{ user: User; token: string }> => {
+export const loginUser = async (user: {}): Promise<{ user: User; token: string }> => {
 	const response = await fetch(`${API_BASE_URL}/login-user`, {
 		method: "POST",
 		headers: {
 			"Content-Type": "application/json",
 		},
+        credentials: 'include',
 		body: JSON.stringify(user),
 	});
 	if (!response.ok) {
@@ -32,6 +33,26 @@ export const fetchUser = async (user: {}): Promise<{ user: User; token: string }
                 throw new Error(errorText);  // 'User not found' or 'Invalid password'
             default:
                 throw new Error('Login failed due to server error'); // Generic error for other statuses
+        }
+    }
+
+	return response.json();
+};
+
+
+export const getUserInfo = async (): Promise<User> => {
+	const response = await fetch(`${API_BASE_URL}/user-info`, {
+		method: "GET",
+		headers: {
+			"Content-Type": "application/json",
+		},
+        credentials: 'include',
+	});
+	if (!response.ok) {
+        const errorText = await response.text(); 
+        switch (response.status) {
+            case 401:
+                throw new Error(errorText);
         }
     }
 

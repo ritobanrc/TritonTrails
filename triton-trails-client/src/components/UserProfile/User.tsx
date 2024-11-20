@@ -1,10 +1,21 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './User.css';
 import { Link } from "react-router-dom";
 import { useAppContext } from '../../context/AppContext';
+import { getUserInfo } from '../../utils/user-utils';
 
 const UserProfile = () => {
   const { user, setUser } = useAppContext();
+
+  useEffect(() => {
+    if (!user) {
+      getUserInfo().then((data) => {
+        console.log(data);
+        setUser(data);
+      });
+    }
+  }, [user]);
+
 
   if (!user) {
     return <p>Please log in</p>;

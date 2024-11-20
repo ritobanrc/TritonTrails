@@ -50,5 +50,5 @@ export async function getTrails(req: Request, res: Response, db: Sequelize) {
 
         return res.status(400).send({ error: `Could not get trails, + ${error}` });
 
-    };
+  };
 }
