@@ -24,7 +24,7 @@
 }
 
 .user-info h2 {
-    font-size: 1.5em;
+    font-size: 1.6em;
     font-family: 'Marmelad';
     margin: 0;
     color: #0A2239;
@@ -33,13 +33,13 @@
 .user-info a {
     color: #15577A;
     text-decoration: none;
-    font-size: 0.9em;
+    font-size: 1em;
     font-family: 'Roboto';
 }
 .user-info p {
     color: #0A2239;
     text-decoration: none;
-    font-size: 0.7em;
+    font-size: 0.8em;
     font-family: 'Roboto';
 }
 
@@ -57,7 +57,7 @@
     padding: 10px 20px;
     border-radius: 20px;
     cursor: pointer;
-    font-size: 0.8em;
+    font-size: 0.9em;
     font-family: 'Roboto';
 }
 .add-trail-button:hover,
