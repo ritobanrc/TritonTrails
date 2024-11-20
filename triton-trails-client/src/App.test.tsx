@@ -1,9 +1,9 @@
 import React from 'react';
-import { render, screen, fireEvent, getByTestId } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import { MemoryRouter as Router } from 'react-router-dom';
 import { waitFor } from '@testing-library/react';
 import AddTrailForm from "./components/Trails/AddTrailForm";
-import { Trail } from "./types/types";
+import { Trail, User } from "./types/types";
 import { AppContext } from "./context/AppContext";
 import { createTrail } from "./utils/trail-utils";
 import "@testing-library/jest-dom/extend-expect";
@@ -48,10 +48,12 @@ jest.mock("./utils/trail-utils", () => ({
 describe("AddTrailForm Component", () => {
   const mockTrails = [] as Trail[];
   const mockSetTrails = jest.fn();
+  const mockUser = null;
+  const mockSetUser = jest.fn();
 
   test("renders form inputs correctly", () => {
     render(
-      <AppContext.Provider value={{ trails: mockTrails, setTrails: mockSetTrails }}>
+      <AppContext.Provider value={{ trails: mockTrails, setTrails: mockSetTrails, user: mockUser, setUser: mockSetUser}}>
         <AddTrailForm />
       </AppContext.Provider>
     );
@@ -63,7 +65,7 @@ describe("AddTrailForm Component", () => {
   
   test("updates input values on user input", () => {
     render(
-      <AppContext.Provider value={{ trails:[], setTrails:() => {} }}>
+      <AppContext.Provider value={{ trails:[], setTrails:() => {}, user: mockUser, setUser: mockSetUser }}>
         <AddTrailForm />
       </AppContext.Provider>
     );
@@ -78,7 +80,7 @@ describe("AddTrailForm Component", () => {
   });
   test("calls createTrail and updates trails on Search page", async () => {
     render(
-      <AppContext.Provider value={{ trails: mockTrails, setTrails: mockSetTrails }}>
+      <AppContext.Provider value={{ trails: mockTrails, setTrails: mockSetTrails, user: mockUser, setUser: mockSetUser }}>
         <Router initialEntries={["/add-trail-form"]}>
           <App />
         </Router>
@@ -107,7 +109,7 @@ describe("AddTrailForm Component", () => {
   });
   test("clears input fields after form submission", () => {
     render(
-      <AppContext.Provider value={{ trails: mockTrails, setTrails: mockSetTrails }}>
+      <AppContext.Provider value={{ trails: mockTrails, setTrails: mockSetTrails, user: mockUser, setUser: mockSetUser }}>
         <Router initialEntries={["/add-trail-form"]}>
           <App />
         </Router>
@@ -126,7 +128,7 @@ describe("AddTrailForm Component", () => {
   });
   test("renders a map for a trail", () => {
     render(
-      <AppContext.Provider value={{ trails: mockTrails, setTrails: mockSetTrails }}>
+      <AppContext.Provider value={{ trails: mockTrails, setTrails: mockSetTrails, user: mockUser, setUser: mockSetUser }}>
         <Router initialEntries={["/add-trail-form"]}>
           <App />
         </Router>
@@ -148,7 +150,7 @@ describe("AddTrailForm Component", () => {
   });
   test("renders a trail name before description", () => {
     render(
-      <AppContext.Provider value={{ trails: mockTrails, setTrails: mockSetTrails }}>
+      <AppContext.Provider value={{ trails: mockTrails, setTrails: mockSetTrails, user: mockUser, setUser: mockSetUser }}>
         <Router initialEntries={["/add-trail-form"]}>
           <App />
         </Router>

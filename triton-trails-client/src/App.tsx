@@ -8,7 +8,7 @@ import Login from "./components/UserLogin/Login"
 import Register from "./components/UserRegister/Register";
 import WeatherDisplay from "./components/Weather/Weather";
 import { Route, Routes } from "react-router-dom";
-import User from "./components/UserProfile/User";
+import UserProfile from "./components/UserProfile/User";
 
 // make sure to npm install react-router-dom
 
@@ -20,7 +20,7 @@ function App() {
           <Navbar />
           <Routes>
             <Route path="/" element={<Search/>}/>
-            <Route path="/profile" element={<User/>}/>
+            <Route path="/profile" element={<UserProfile/>}/>
             <Route path="/add-trail-form" element={<AddTrailForm />}/>
             <Route path="/login" element={<Login/>}/>
             <Route path="/create-account" element={<Register/>}/>

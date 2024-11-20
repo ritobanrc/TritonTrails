@@ -20,7 +20,9 @@ const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     setUsername("");
     setPassword("");
     createUser(newUser);
-    // add code here to allow for verifying user login
+    // Could add routing to login page here?
+    // or automatically login user?
+    // add some error handling for if username already exists
 }
 
 return (

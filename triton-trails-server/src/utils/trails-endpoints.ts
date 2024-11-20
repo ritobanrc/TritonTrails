@@ -4,12 +4,11 @@ import { Sequelize } from "sequelize";
 
 export function createTrailsEndpoints (app: any, db: Sequelize) {
     // Create a new trail
-
     app.post("/trails", (req: Request, res: Response) => {
         createTrailServer(req, res, db);
     });
 
-    // Get all expenses
+    // Get all trails
     app.get("/trails", (req: Request, res: Response) => {
         getTrails(req, res, db);
     });
@@ -32,7 +31,7 @@ export function createTrailsEndpoints (app: any, db: Sequelize) {
     /// Returns the image with ID given by the parameter
     app.get("/image/:id", (req: Request, res: Response) => {
         console.log("[/image] Requested image id: ", req.params.id);
-        (async() => { 
+        (async() => {
             const result = await db.models.Image.findByPk(req.params.id as any);
             if (result) {
                 console.log("[/image] Requested image found: ", req.params.id);
