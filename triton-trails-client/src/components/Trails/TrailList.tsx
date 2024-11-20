@@ -39,7 +39,7 @@ const TrailDisplay: React.FC<{ trail: Trail }> = ({ trail }) => {
                             />
                         )}
                     </div>
-                    <div className="trail-map">
+                    <div className="trail-map" data-testid="map">
                         <iframe
                             src="https://www.openstreetmap.org/export/embed.html?bbox=-117.26150035858156%2C32.86383591013185%2C-117.23493576049806%2C32.891227612173246&layer=mapnik"
                             title="Trail Map"

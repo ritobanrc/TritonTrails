@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, getByTestId } from '@testing-library/react';
 import { MemoryRouter as Router } from 'react-router-dom';
 import { waitFor } from '@testing-library/react';
 import AddTrailForm from "./components/Trails/AddTrailForm";
@@ -123,5 +123,51 @@ describe("AddTrailForm Component", () => {
 
     expect(nameInput).toHaveValue("");
     expect(descriptionInput).toHaveValue("");
+  });
+  test("renders a map for a trail", () => {
+    render(
+      <AppContext.Provider value={{ trails: mockTrails, setTrails: mockSetTrails }}>
+        <Router initialEntries={["/add-trail-form"]}>
+          <App />
+        </Router>
+      </AppContext.Provider>
+    );
+    const nameInput = screen.getByPlaceholderText("Trail name");
+    const descriptionInput = screen.getByPlaceholderText("Trail description");
+    fireEvent.change(nameInput, { target: { value: "New Test" } });
+    fireEvent.change(descriptionInput, { target: { value: "blah blah blah" } });
+
+    fireEvent.submit(screen.getByText("Create Trail"));
+
+    expect(screen.getByText("Explore")).toBeInTheDocument();
+
+    fireEvent.click(screen.getByText("Explore"));
+
+    const mapIframe = screen.getByTestId('map');
+    expect(mapIframe).toBeInTheDocument();
+  });
+  test("renders a trail name before description", () => {
+    render(
+      <AppContext.Provider value={{ trails: mockTrails, setTrails: mockSetTrails }}>
+        <Router initialEntries={["/add-trail-form"]}>
+          <App />
+        </Router>
+      </AppContext.Provider>
+    );
+    const nameInput = screen.getByPlaceholderText("Trail name");
+    const descriptionInput = screen.getByPlaceholderText("Trail description");
+    fireEvent.change(nameInput, { target: { value: "New Test" } });
+    fireEvent.change(descriptionInput, { target: { value: "blah blah blah" } });
+
+    fireEvent.submit(screen.getByText("Create Trail"));
+
+    expect(screen.getByText("Explore")).toBeInTheDocument();
+
+    fireEvent.click(screen.getByText("Explore"));
+
+    const trailName = screen.getByText("New Test").closest('div');
+    const trailDescription = screen.getByText("blah blah blah").closest('div');
+
+    expect(trailName.compareDocumentPosition(trailDescription) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
   });
 });
