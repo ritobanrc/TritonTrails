@@ -44,7 +44,9 @@ const AddTrailForm = () => {
   return (
     // copy setup from Search page
     <div className="addTrailForm page">
-      <h1 className="page-header-text">Add Your Own Trail</h1>
+      <div className="page-header">
+        <h1 className="page-header-text">Add Your Own Trail</h1>
+      </div>
       <div className="rounded-div">
         <form className="rounded-div-content" onSubmit={onSubmit}>
           <div className="flex-row">

@@ -26,6 +26,7 @@ const TrailDisplay: React.FC<{ trail: Trail }> = ({ trail }) => {
     }, [trail.id]); // Depend on trail.id so it refetches if the trail changes
 
     return (
+        <div className="ListTrails">
         <div className="rounded-div">
             <p className="trail-name">{trail.name}</p>
             <div className="trail-details">
@@ -49,6 +50,7 @@ const TrailDisplay: React.FC<{ trail: Trail }> = ({ trail }) => {
                 </div>
                 <p className="trail-description">{trail.description}</p> {/* Separate description */}
             </div>
+        </div>
         </div>
     );
 };

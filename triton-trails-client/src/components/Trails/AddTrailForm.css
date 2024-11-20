@@ -5,8 +5,8 @@
     width: 100%;
     font-family: 'Roboto';
 }
-
 .rounded-div-content {
+    padding-top: 30px;
     display: flex;
     flex-direction: column;
     gap: 20px;
