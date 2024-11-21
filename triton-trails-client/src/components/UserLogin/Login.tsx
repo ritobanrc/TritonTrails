@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import './Login.css';
 import { Link } from "react-router-dom";
-import { fetchUser } from "../../utils/user-utils"
+import { loginUser } from "../../utils/user-utils"
 import UserProfile from "../UserProfile/User"
 import { useAppContext } from '../../context/AppContext';
 import { useNavigate } from 'react-router-dom';
@@ -24,7 +24,7 @@ const Login = () => {
     setPassword("");
 
     try {
-      const {user: ourUser, token} = await fetchUser(findUser);
+      const {user: ourUser} = await loginUser(findUser);
       setUser(ourUser);
       navigate('/profile');
     } catch(error) {

@@ -8,6 +8,7 @@ export const createTrail = async (trail: Trail): Promise<Trail> => {
 		headers: {
 			"Content-Type": "application/json",
 		},
+        credentials: 'include',
 		body: JSON.stringify(trail),
 	});
 	if (!response.ok) {

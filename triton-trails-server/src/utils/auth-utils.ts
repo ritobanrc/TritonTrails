@@ -1,10 +1,10 @@
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import { User } from '../createTable';
+import { SECRET_KEY } from '../constants';
 import { Request, Response } from "express";
 
 const saltRounds = 10;
-const SECRET_KEY = '123';
 
 export const registerUser = async (req:Request, res:Response) => {
     try {
@@ -46,8 +46,18 @@ export const loginUser = async (req:Request, res:Response) => {
         }
 
         const token = jwt.sign({ userId: user.id, username: user.username }, SECRET_KEY, { expiresIn: '1h' });
+        console.log("Token for user: ", username, " is ", token);
 
-        res.status(201).send({user, token});
+        res
+        .status(201)
+        .cookie('token', token, {
+            httpOnly: false,      // Allows JavaScript access
+            secure: true,        // Ensures the cookie is sent over HTTPS
+            sameSite: 'strict',  // Prevents CSRF
+            maxAge: 60 * 60 * 1000, // 1 hour expiration
+        }).send({user});
+
+        //res.status(201).send({user, token});
         console.log("Found User ", user);
 
         return { user, token };
