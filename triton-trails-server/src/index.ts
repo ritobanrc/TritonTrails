@@ -15,7 +15,7 @@ const app = express();
 const port = 8080;
 
 app.use(cors({
-  origin: 'htpp://localhost:3000', // Replace with your frontend's URL
+  origin: 'http://localhost:3000', // Replace with your frontend's URL
   credentials: true,                     // Allow cookies to be sent
 }));
 app.use(bodyParser.json({ limit: '100mb' })); // allows image string to be passed via JSON
