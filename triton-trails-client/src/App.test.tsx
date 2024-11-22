@@ -59,7 +59,7 @@ describe("AddTrailForm Component", () => {
     );
 
     expect(screen.getByPlaceholderText("Trail name")).toBeInTheDocument();
-    expect(screen.getByPlaceholderText("Trail description")).toBeInTheDocument();
+    expect(screen.getByPlaceholderText("Consider including tips and helpful features")).toBeInTheDocument();
     expect(screen.getByText("Create Trail")).toBeInTheDocument();
   });
   
@@ -70,7 +70,7 @@ describe("AddTrailForm Component", () => {
       </AppContext.Provider>
     );
     const nameInput = screen.getByPlaceholderText("Trail name");
-    const descriptionInput = screen.getByPlaceholderText("Trail description");
+    const descriptionInput = screen.getByPlaceholderText("Consider including tips and helpful features");
 
     fireEvent.change(nameInput, { target: { value: "New Trail" } });
     fireEvent.change(descriptionInput, { target: { value: "blah blah blah" } });
@@ -87,7 +87,7 @@ describe("AddTrailForm Component", () => {
       </AppContext.Provider>
     );
     const nameInput = screen.getByPlaceholderText("Trail name");
-    const descriptionInput = screen.getByPlaceholderText("Trail description");
+    const descriptionInput = screen.getByPlaceholderText("Consider including tips and helpful features");
 
     fireEvent.change(nameInput, { target: { value: "Trail Name" } });
     fireEvent.change(descriptionInput, { target: { value: "Trail Description" } });
@@ -116,7 +116,7 @@ describe("AddTrailForm Component", () => {
       </AppContext.Provider>
     );
     const nameInput = screen.getByPlaceholderText("Trail name");
-    const descriptionInput = screen.getByPlaceholderText("Trail description");
+    const descriptionInput = screen.getByPlaceholderText("Consider including tips and helpful features");
 
     fireEvent.change(nameInput, { target: { value: "New Test" } });
     fireEvent.change(descriptionInput, { target: { value: "blah blah blah" } });
@@ -135,7 +135,7 @@ describe("AddTrailForm Component", () => {
       </AppContext.Provider>
     );
     const nameInput = screen.getByPlaceholderText("Trail name");
-    const descriptionInput = screen.getByPlaceholderText("Trail description");
+    const descriptionInput = screen.getByPlaceholderText("Consider including tips and helpful features");
     fireEvent.change(nameInput, { target: { value: "New Test" } });
     fireEvent.change(descriptionInput, { target: { value: "blah blah blah" } });
 
@@ -157,7 +157,7 @@ describe("AddTrailForm Component", () => {
       </AppContext.Provider>
     );
     const nameInput = screen.getByPlaceholderText("Trail name");
-    const descriptionInput = screen.getByPlaceholderText("Trail description");
+    const descriptionInput = screen.getByPlaceholderText("Consider including tips and helpful features");
     fireEvent.change(nameInput, { target: { value: "New Test" } });
     fireEvent.change(descriptionInput, { target: { value: "blah blah blah" } });
 
