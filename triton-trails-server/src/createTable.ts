@@ -198,7 +198,6 @@ Trail.hasMany(Image);
 Image.belongsTo(Trail);   
 //Trail.hasMany(Route);
 Route.belongsTo(Trail, { foreignKey: 'TrailId', onDelete: 'CASCADE' });
-
 User.belongsToMany(Trail, { through: 'User_Trails', timestamps: false }); 
 Trail.belongsToMany(User, { through: 'User_Trails', timestamps: false }); 
 
