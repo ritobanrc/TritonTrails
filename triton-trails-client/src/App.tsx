@@ -4,11 +4,11 @@ import { AppProvider } from "./context/AppContext";
 import AddTrailForm from "./components/Trails/AddTrailForm";
 import Navbar from "./components/Navbar/Navbar";
 import Search from "./components/Search page/Search";
-import Login from "./components/UserLogin/Login"
-import Register from "./components/UserRegister/Register";
+import Login from "./components/User/Login"
+import Register from "./components/User/Register";
 import WeatherDisplay from "./components/Weather/Weather";
 import { Route, Routes } from "react-router-dom";
-import UserProfile from "./components/UserProfile/User";
+import UserProfile from "./components/User/Profile";
 
 // make sure to npm install react-router-dom
 

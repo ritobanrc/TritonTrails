@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import './Login.css';
 import { Link } from "react-router-dom";
 import { loginUser } from "../../utils/user-utils"
-import UserProfile from "../UserProfile/User"
+import UserProfile from "./Profile"
 import { useAppContext } from '../../context/AppContext';
 import { useNavigate } from 'react-router-dom';
 
