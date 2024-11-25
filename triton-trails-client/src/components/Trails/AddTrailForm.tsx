@@ -30,6 +30,12 @@ const AddTrailForm = () => {
     createTrail(newTrail);
   }
 
+  // This function triggers the hidden file input
+  const handleButtonClick = () => {
+    document.getElementById('fileInput')!.click();  // Trigger file input click
+
+  }
+
   const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files[0]) {
       const file = event.target.files[0];
@@ -60,6 +66,7 @@ const AddTrailForm = () => {
               {/* Image upload */}
               <div
                 className="image-upload-container"
+                onClick={handleButtonClick}
                 style={{
                   backgroundImage: image ? `url(${image})` : "none",
                   backgroundSize: "cover",
@@ -67,7 +74,17 @@ const AddTrailForm = () => {
                 }}
               >
                 {!image && (
-                  <input type="file" onChange={handleImageChange} accept="image/*" />
+                  <div className="input-wrapper">
+                    <img src="https://cdn-icons-png.freepik.com/512/5008/5008022.png" ></img>
+                    <label>Upload Image</label>
+                    {/* Hidden file input */}
+                    <input 
+                      type="file" 
+                      id="fileInput" 
+                      onChange={handleImageChange} 
+                      style={{ display: 'none' }}
+                      accept="image/*" />
+                  </div>
                 )}
               </div>
             </div>

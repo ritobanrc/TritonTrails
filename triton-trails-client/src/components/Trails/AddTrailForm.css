@@ -57,15 +57,36 @@
     justify-content: center; 
     align-items: center;
     padding: 20px;
-  }
+}
+
+.input-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center;
+    gap: 10px;
+    font-family: 'Roboto';
+    color: #4f83d1;
+    font-style: italic;
+    font-weight: bold;
+}
   
+.input-wrapper img {
+    max-width: 100px;
+}
+
+.image-upload-container:hover {
+    background-color: #96D2EE;
+}
+
 .image-upload-container input {
     display: block; /* Ensures the input takes up the space inside the div */
     background: transparent; /* Makes sure the input doesn't override the div's background */
     border: none; /* Removes the default input border */
     padding: 10px; 
 }
-  
+
+.input-container
 input[type="file"] {
     display: block;
     font-size: 1em;
