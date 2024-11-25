@@ -27,40 +27,8 @@ app.use(cookieParser());
 app.listen(port, () => {
     console.log(`Server running at http://localhost:${port}`);
 });
-
 (async () => {
     const db = await initDB();
-    app.get("/", (req: Request, res: Response) => {
-        res.status(200).send("This page is intentionally blank.");
-    });
-
-
-    app.post("/register", async (req: Request, res: Response) => {
-        const { username, displayName, password } = req.body;
-        try {
-            const user = await registerUser(username, displayName, password);
-            res.status(201).json({ message: "User registered successfully", user });
-        } catch (error) {
-            if (error instanceof Error) {
-                res.status(400).json({ error: error.message });
-            } else {
-                res.status(400).json({ error: "An unknown error occurred" });
-            }
-        }
-    });
-    app.post("/login", async (req: Request, res: Response) => {
-        const { username, password } = req.body;
-        try {
-            const { user, token } = await loginUser(username, password);
-            res.status(200).json({ message: "Login successful", user, token });
-        } catch (error) {
-            if (error instanceof Error) {
-                res.status(400).json({ error: error.message });
-            } else {
-                res.status(400).json({ error: "An unknown error occurred" });
-            }
-        }
-    });
     createTrailsEndpoints(app, db.sequelize);
     createAuthEndpoints(app);
     createUserEndpoints(app);
