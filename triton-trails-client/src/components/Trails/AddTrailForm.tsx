@@ -30,6 +30,12 @@ const AddTrailForm = () => {
     createTrail(newTrail);
   }
 
+  // This function triggers the hidden file input
+  const handleButtonClick = () => {
+    document.getElementById('fileInput')!.click();  // Trigger file input click
+
+  }
+
   const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files[0]) {
       const file = event.target.files[0];
@@ -44,28 +50,52 @@ const AddTrailForm = () => {
   return (
     // copy setup from Search page
     <div className="addTrailForm page">
-      <h1 className="page-header-text">Add Your Own Trail</h1>
+      <div className="page-header">
+        <h1 className="page-header-text">Add Your Own Trail</h1>
+      </div>
       <div className="rounded-div">
         <form className="rounded-div-content" onSubmit={onSubmit}>
           <div className="flex-row">
-            <input className="input-field-2"
-              type="text"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              placeholder="Trail name"
-            />
+            <div className="flex-col">
+              <input className="input-field-2"
+                type="text"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                placeholder="Trail name"
+              />
+              {/* Image upload */}
+              <div
+                className="image-upload-container"
+                onClick={handleButtonClick}
+                style={{
+                  backgroundImage: image ? `url(${image})` : "none",
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                }}
+              >
+                {!image && (
+                  <div className="input-wrapper">
+                    <img src="https://cdn-icons-png.freepik.com/512/5008/5008022.png" ></img>
+                    <label>Upload Image</label>
+                    {/* Hidden file input */}
+                    <input 
+                      type="file" 
+                      id="fileInput" 
+                      onChange={handleImageChange} 
+                      style={{ display: 'none' }}
+                      accept="image/*" />
+                  </div>
+                )}
+              </div>
+            </div>
             <a href="#" className="location-link">Select the location</a>
           </div>
-          {/* Image upload */}
-          <div>
-            <input type="file" onChange={handleImageChange} accept="image/*" />
-          </div>
-          {image && <img className="add-trail-img" src={image} alt="Preview"/>}
           {/* Description */}
+          <h2 className="desc-header">Tell us about your experience!</h2>
           <textarea className="input-field-3"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
-            placeholder="Trail description"
+            placeholder="Consider including tips and helpful features"
           />
           <button className="add-trail-button align-right" type="submit">Create Trail</button>
         </form>

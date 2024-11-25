@@ -3,10 +3,13 @@ import { Request, Response } from "express";
 import { Sequelize } from "sequelize";
 import { Route } from "../createTable";
 
-export function createTrailsEndpoints(app: any, db: Sequelize) {
+export function createTrailsEndpoints (app: any, db: Sequelize) {
+    // Create a new trail
     app.post("/trails", (req: Request, res: Response) => {
         createTrailServer(req, res, db);
     });
+
+    // Get all trails
     app.get("/trails", (req: Request, res: Response) => {
         getTrails(req, res, db);
     });

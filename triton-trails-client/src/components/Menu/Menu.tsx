@@ -2,6 +2,7 @@ import React from 'react';
 import './Menu.css';
 import { Link } from "react-router-dom";
 import { useState, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Menu = () => {
     // menu is open state
@@ -15,6 +16,7 @@ const Menu = () => {
     const toggleNavbar = () => {
         setIsOpen(!isOpen);
     };
+
     useEffect(() => {
       const handleClickOutside = (event: { target: any; }) => {
           // Check if the click is outside the menu container and menu icon
@@ -29,7 +31,7 @@ const Menu = () => {
       return () => {
           document.removeEventListener('mousedown', handleClickOutside);
       };
-  }, []);
+    }, []);
 
     return (
       <nav className="menu">
