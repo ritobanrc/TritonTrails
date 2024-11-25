@@ -27,13 +27,8 @@ app.use(cookieParser());
 app.listen(port, () => {
     console.log(`Server running at http://localhost:${port}`);
 });
-
 (async () => {
     const db = await initDB();
-    app.get("/", (req: Request, res: Response) => {
-        res.status(200).send("This page is intentionally blank.");
-    });
-
     createTrailsEndpoints(app, db.sequelize);
     createAuthEndpoints(app);
     createUserEndpoints(app);
