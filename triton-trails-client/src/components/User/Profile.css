@@ -3,6 +3,7 @@
     padding: 20px;
     padding-top: 30px;
     padding-bottom: 50px;
+    min-height: 100px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -23,23 +24,23 @@
     padding-left: 30px;
 }
 
-.user-info h2 {
-    font-size: 1.5em;
+.display-name{
+    font-size: 1.6em;
     font-family: 'Marmelad';
     margin: 0;
     color: #0A2239;
 }
 
-.user-info a {
+.username {
     color: #15577A;
     text-decoration: none;
-    font-size: 0.9em;
+    font-size: 1em;
     font-family: 'Roboto';
 }
 .user-info p {
     color: #0A2239;
     text-decoration: none;
-    font-size: 0.7em;
+    font-size: 0.8em;
     font-family: 'Roboto';
 }
 
@@ -49,19 +50,17 @@
     gap: 10px;
 }
 .add-trail-button,
-.edit-profile-button,
-.settings-button {
+.edit-profile-button {
     background-color: #1788BC;
     color: white;
     border: none;
     padding: 10px 20px;
     border-radius: 20px;
     cursor: pointer;
-    font-size: 0.8em;
+    font-size: 0.9em;
     font-family: 'Roboto';
 }
 .add-trail-button:hover,
-.edit-profile-button:hover,
-.settings-button:hover {
+.edit-profile-button:hover{
     background-color: #15577A;
 }

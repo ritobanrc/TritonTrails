@@ -3,7 +3,7 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import { MemoryRouter as Router } from 'react-router-dom';
 import { waitFor } from '@testing-library/react';
 import AddTrailForm from "./components/Trails/AddTrailForm";
-import { Trail } from "./types/types";
+import { Trail, User } from "./types/types";
 import { AppContext } from "./context/AppContext";
 import { createTrail } from "./utils/trail-utils";
 import "@testing-library/jest-dom/extend-expect";
@@ -48,27 +48,29 @@ jest.mock("./utils/trail-utils", () => ({
 describe("AddTrailForm Component", () => {
   const mockTrails = [] as Trail[];
   const mockSetTrails = jest.fn();
+  const mockUser = null;
+  const mockSetUser = jest.fn();
 
   test("renders form inputs correctly", () => {
     render(
-      <AppContext.Provider value={{ trails: mockTrails, setTrails: mockSetTrails }}>
+      <AppContext.Provider value={{ trails: mockTrails, setTrails: mockSetTrails, user: mockUser, setUser: mockSetUser}}>
         <AddTrailForm />
       </AppContext.Provider>
     );
 
     expect(screen.getByPlaceholderText("Trail name")).toBeInTheDocument();
-    expect(screen.getByPlaceholderText("Trail description")).toBeInTheDocument();
+    expect(screen.getByPlaceholderText("Consider including tips and helpful features")).toBeInTheDocument();
     expect(screen.getByText("Create Trail")).toBeInTheDocument();
   });
   
   test("updates input values on user input", () => {
     render(
-      <AppContext.Provider value={{ trails:[], setTrails:() => {} }}>
+      <AppContext.Provider value={{ trails:[], setTrails:() => {}, user: mockUser, setUser: mockSetUser }}>
         <AddTrailForm />
       </AppContext.Provider>
     );
     const nameInput = screen.getByPlaceholderText("Trail name");
-    const descriptionInput = screen.getByPlaceholderText("Trail description");
+    const descriptionInput = screen.getByPlaceholderText("Consider including tips and helpful features");
 
     fireEvent.change(nameInput, { target: { value: "New Trail" } });
     fireEvent.change(descriptionInput, { target: { value: "blah blah blah" } });
@@ -78,14 +80,14 @@ describe("AddTrailForm Component", () => {
   });
   test("calls createTrail and updates trails on Search page", async () => {
     render(
-      <AppContext.Provider value={{ trails: mockTrails, setTrails: mockSetTrails }}>
+      <AppContext.Provider value={{ trails: mockTrails, setTrails: mockSetTrails, user: mockUser, setUser: mockSetUser }}>
         <Router initialEntries={["/add-trail-form"]}>
           <App />
         </Router>
       </AppContext.Provider>
     );
     const nameInput = screen.getByPlaceholderText("Trail name");
-    const descriptionInput = screen.getByPlaceholderText("Trail description");
+    const descriptionInput = screen.getByPlaceholderText("Consider including tips and helpful features");
 
     fireEvent.change(nameInput, { target: { value: "Trail Name" } });
     fireEvent.change(descriptionInput, { target: { value: "Trail Description" } });
@@ -107,14 +109,14 @@ describe("AddTrailForm Component", () => {
   });
   test("clears input fields after form submission", () => {
     render(
-      <AppContext.Provider value={{ trails: mockTrails, setTrails: mockSetTrails }}>
+      <AppContext.Provider value={{ trails: mockTrails, setTrails: mockSetTrails, user: mockUser, setUser: mockSetUser }}>
         <Router initialEntries={["/add-trail-form"]}>
           <App />
         </Router>
       </AppContext.Provider>
     );
     const nameInput = screen.getByPlaceholderText("Trail name");
-    const descriptionInput = screen.getByPlaceholderText("Trail description");
+    const descriptionInput = screen.getByPlaceholderText("Consider including tips and helpful features");
 
     fireEvent.change(nameInput, { target: { value: "New Test" } });
     fireEvent.change(descriptionInput, { target: { value: "blah blah blah" } });
@@ -123,5 +125,51 @@ describe("AddTrailForm Component", () => {
 
     expect(nameInput).toHaveValue("");
     expect(descriptionInput).toHaveValue("");
+  });
+  test("renders a map for a trail", () => {
+    render(
+      <AppContext.Provider value={{ trails: mockTrails, setTrails: mockSetTrails, user: mockUser, setUser: mockSetUser }}>
+        <Router initialEntries={["/add-trail-form"]}>
+          <App />
+        </Router>
+      </AppContext.Provider>
+    );
+    const nameInput = screen.getByPlaceholderText("Trail name");
+    const descriptionInput = screen.getByPlaceholderText("Consider including tips and helpful features");
+    fireEvent.change(nameInput, { target: { value: "New Test" } });
+    fireEvent.change(descriptionInput, { target: { value: "blah blah blah" } });
+
+    fireEvent.submit(screen.getByText("Create Trail"));
+
+    expect(screen.getByText("Explore")).toBeInTheDocument();
+
+    fireEvent.click(screen.getByText("Explore"));
+
+    const mapIframe = screen.getByTestId('map');
+    expect(mapIframe).toBeInTheDocument();
+  });
+  test("renders a trail name before description", () => {
+    render(
+      <AppContext.Provider value={{ trails: mockTrails, setTrails: mockSetTrails, user: mockUser, setUser: mockSetUser }}>
+        <Router initialEntries={["/add-trail-form"]}>
+          <App />
+        </Router>
+      </AppContext.Provider>
+    );
+    const nameInput = screen.getByPlaceholderText("Trail name");
+    const descriptionInput = screen.getByPlaceholderText("Consider including tips and helpful features");
+    fireEvent.change(nameInput, { target: { value: "New Test" } });
+    fireEvent.change(descriptionInput, { target: { value: "blah blah blah" } });
+
+    fireEvent.submit(screen.getByText("Create Trail"));
+
+    expect(screen.getByText("Explore")).toBeInTheDocument();
+
+    fireEvent.click(screen.getByText("Explore"));
+
+    const trailName = screen.getByText("New Test").closest('div');
+    const trailDescription = screen.getByText("blah blah blah").closest('div');
+
+    //expect(trailName.compareDocumentPosition(trailDescription) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
   });
 });
