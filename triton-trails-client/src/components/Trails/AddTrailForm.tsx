@@ -88,10 +88,21 @@ const AddTrailForm = () => {
                 )}
               </div>
             </div>
-            <a href="#" className="location-link">Select the location</a>
+            {/* Location */}
+            <div className="flex-col">
+              <h2 className="header">Select the start and end points</h2>
+              <div className="trail-map" data-testid="map">
+                <iframe
+                    src="https://www.openstreetmap.org/export/embed.html?bbox=-117.26150035858156%2C32.86383591013185%2C-117.23493576049806%2C32.891227612173246&layer=mapnik"
+                    title="Trail Map"
+                    style={{ width: '100%', height: '100%', border: 'none' }}
+                ></iframe>
+              </div>
+              
+            </div>
           </div>
           {/* Description */}
-          <h2 className="desc-header">Tell us about your experience!</h2>
+          <h2 className="header">Tell us about your experience!</h2>
           <textarea className="input-field-3"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
