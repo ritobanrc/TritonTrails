@@ -1,5 +1,5 @@
 import { API_BASE_URL } from "../constants/constants";
-import { Trail } from "../types/types";
+import { Trail, Route } from "../types/types";
 
 // Function to create a trail in the backend. Method: POST
 export const createTrail = async (trail: Trail): Promise<Trail> => {
@@ -32,4 +32,18 @@ export const fetchTrails = async (): Promise<Trail[]> => {
 
 	console.log("response in fetchTrails", trailList);
 	return trailList;
+};
+
+// Function to get route associated with trail
+export const fetchRoute = async (trailId:number) => {
+    try {
+        const response = await fetch(`${API_BASE_URL}/trails/${trailId}/routes`);
+        if (!response.ok) {
+            throw new Error('Failed to fetch routes');
+        }
+        return await response.json();
+    } catch (error) {
+        console.error('Error fetching routes:', error);
+        throw error;
+    }
 };
