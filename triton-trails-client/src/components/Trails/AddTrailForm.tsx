@@ -7,6 +7,8 @@ import { MapContainer, TileLayer, Marker, Popup, useMapEvents } from "react-leaf
 import L from "leaflet";
 import './AddTrailForm.css';
 
+import { useNavigate } from 'react-router-dom';
+
 const defaultStartIcon = L.icon({
   iconUrl: 'https://cdn-icons-png.flaticon.com/512/9356/9356286.png',
   iconSize: [40, 40],
@@ -28,8 +30,13 @@ const AddTrailForm = () => {
   const [name, setName] = useState("");
   const [image, setImage] = useState("");
   const [description, setDescription] = useState("");
+
   const [startPoint, setStartPoint] = useState<[number, number] | null>(null);
   const [endPoint, setEndPoint] = useState<[number, number] | null>(null);
+
+  const [imageUploaded, setImageUploaded] = useState(false);
+  
+  const navigate = useNavigate(); // Get the navigate function from react-router-dom
 
   const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -58,6 +65,9 @@ const AddTrailForm = () => {
     setEndPoint(null);
     createTrail(newTrail);
     createRoute(newTrail.id, newRoute);
+
+    // go to search page after submission
+    navigate('/');
   };
 
   // Custom map events to handle marker placement
@@ -73,13 +83,16 @@ const AddTrailForm = () => {
         }
       }
     });
-
     return null;
   };
 
   // Trigger file input on button click
   const handleButtonClick = () => {
-    document.getElementById('fileInput')!.click();  
+    // add state so you can click an image after it's uploaded
+    if (!imageUploaded){
+      document.getElementById('fileInput')!.click();
+    }
+    setImageUploaded(true);
   }
 
   const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -142,14 +155,10 @@ const AddTrailForm = () => {
                   />
                   <MapClickHandler />
                   {startPoint && (
-                    <Marker position={startPoint} icon={defaultStartIcon}>
-                      <Popup autoClose={false} closeOnClick={false}>Start Point</Popup>
-                    </Marker>
+                    <Marker position={startPoint} icon={defaultStartIcon}/>
                   )}
                   {endPoint && (
-                    <Marker position={endPoint} icon={defaultEndIcon}>
-                      <Popup autoClose={false} closeOnClick={false}>End Point</Popup>
-                    </Marker>
+                    <Marker position={endPoint} icon={defaultEndIcon}/>
                   )}
                 </MapContainer>
               </div>
