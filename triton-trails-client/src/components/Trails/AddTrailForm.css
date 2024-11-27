@@ -17,7 +17,9 @@
     width: 100%;
     align-items: stretch; /* Keep image and map at equal heights */
     gap: 30px;
-    height: auto;
+    min-height: 300px;
+    max-height: 500px;
+    margin-bottom: 70px;
 }
 .flex-row .location-link {
     color: #1E7CAE; /* Blue link color */
@@ -47,15 +49,15 @@
 }
 .input-field-2::placeholder,
 .input-field-3::placeholder {
-  color: #1E7CAE; /* Your desired placeholder color */
-  font-style: italic;
-  opacity: 0.7; /* Ensures full opacity for placeholder text */
+    color: #1E7CAE; /* Your desired placeholder color */
+    font-style: italic;
+    opacity: 0.7; /* Ensures full opacity for placeholder text */
 }
 .input-field-2 {
     margin-bottom: 20px;
 }
 .image-upload-container {
-    height: 300px;
+    height: 90%;
     background-color: #B9E1F3;
     border: 2px dashed rgba(10,34,57, 0.5);
     display: flex; 
@@ -114,20 +116,20 @@ input[type="file"] {
     margin-bottom: 27px;
 }
 .trail-map {
-    /* Changed formatting so image crops, take out if we decide to not crop */
-    height: 345px;
+    height: 100%;
+    z-index: 10; 
     overflow: hidden;       
-    flex: 1; /* Share the space equally */
-    display: flex;
+    display: block;
     flex-direction: column;
     border: 1px solid #ccc; /* Light grey border around content and map */
     border-radius: 8px; /* Rounded corners for both elements */
-    overflow: hidden; /* Prevents content from spilling outside the border */
 }
-.trail-map iframe {
-    width: 100%;
-    height: 100%; /* Adjust height to fill the container */
-    border: none;
+.desc-header{
+    font-family: 'Roboto';
+    color: #0A2239;
+    font-size: 1.1em;
+    font-weight: normal;
+    margin-right: auto;
 }
 .input-field-3 {   
     height: 200px; /* Adjust height for description field */

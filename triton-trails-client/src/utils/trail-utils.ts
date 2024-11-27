@@ -34,6 +34,23 @@ export const fetchTrails = async (): Promise<Trail[]> => {
 	return trailList;
 };
 
+// Function to create a route associated with a trail. Method: POST
+export const createRoute = async (trailId: number, route: Omit<Route, "TrailId">): Promise<Route> => {
+    const response = await fetch(`${API_BASE_URL}/trails/${trailId}/routes`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        credentials: 'include',
+        body: JSON.stringify(route),
+    });
+
+    if (!response.ok) {
+        throw new Error("Failed to create route");
+    }
+    return response.json();
+};
+
 // Function to get route associated with trail
 export const fetchRoute = async (trailId:number) => {
     try {
