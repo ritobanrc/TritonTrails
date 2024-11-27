@@ -1,6 +1,9 @@
 //import { Trail } from "../types/types";
 import { Request, Response } from "express";
 import { Sequelize } from "sequelize";
+import { Route } from "../createTable";
+import { User } from "../createTable";
+import { Trail } from "../createTable";
 
 export async function createTrailServer(req: Request, res: Response, db:Sequelize) {
     try {
@@ -51,4 +54,21 @@ export async function getTrails(req: Request, res: Response, db: Sequelize) {
         return res.status(400).send({ error: `Could not get trails, + ${error}` });
 
   };
+}
+export async function markTrailVisited(req: Request, res: Response) {
+    try {
+        const { userId, trailId } = req.params;
+        const user = await User.findByPk(userId);
+        const trail = await Trail.findByPk(trailId);
+
+        if (!user || !trail) {
+            return res.status(404).send({ error: "User or Trail not found." });
+        }
+        await user.addTrail(trail);
+        console.log(`User ${userId} marked trail ${trailId} as visited.`);
+        res.status(200).send({ message: "Trail marked as visited." });
+    } catch (error) {
+        console.log("Error on markTrailVisited:", error);
+        return res.status(400).send({ error: `Could not mark trail as visited: ${error}` });
+    }
 }

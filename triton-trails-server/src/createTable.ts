@@ -1,4 +1,4 @@
-import { Sequelize, DataTypes, Model, Optional } from 'sequelize';
+import { Sequelize, DataTypes, Model, Optional, Association, BelongsToManyAddAssociationMixin, BelongsToManyGetAssociationsMixin, BelongsToManyRemoveAssociationMixin } from 'sequelize';
 
 const sequelize = new Sequelize({
     dialect: 'sqlite',
@@ -46,6 +46,13 @@ class User extends Model<UserAttributes, UserCreationAttributes> implements User
     public displayName!: string;
     public passwordHash!: string;
     public passwordSalt!: string;
+    public getTrails!: BelongsToManyGetAssociationsMixin<Trail>;
+    public addTrail!: BelongsToManyAddAssociationMixin<Trail, number>;
+    public removeTrail!: BelongsToManyRemoveAssociationMixin<Trail, number>;
+
+    public static associations: {
+        trails: Association<User, Trail>;
+    };
 }
 
 User.init(
@@ -85,7 +92,14 @@ class Trail extends Model<TrailAttributes, TrailCreationAttributes> implements T
     public description!: string;
     public image?: string;
     // public latitude!: number; 
-    // public longitude!: number; 
+    // public longitude!: number;
+    public getUsers!: BelongsToManyGetAssociationsMixin<User>; 
+    public addUser!: BelongsToManyAddAssociationMixin<User, number>; 
+    public removeUser!: BelongsToManyRemoveAssociationMixin<User, number>;
+
+    public static associations: {
+        users: Association<Trail, User>;
+    };
 }
 
 Trail.init(
