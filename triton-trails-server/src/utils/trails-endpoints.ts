@@ -1,4 +1,4 @@
-import { createTrailServer, getTrails, markTrailVisited } from "./trail-utils";
+import { createTrailServer, getTrails, Visited } from "./trail-utils";
 import { Request, Response } from "express";
 import { Sequelize } from "sequelize";
 import { Route } from "../createTable";
@@ -148,7 +148,7 @@ export function createTrailsEndpoints (app: any, db: Sequelize)
     });
     app.post("/trails", (req: Request, res: Response) => createTrailServer(req, res, db));
     app.get("/trails", (req: Request, res: Response) => getTrails(req, res, db));
-    app.post("/users/:userId/trails/:trailId/visited", markTrailVisited);
+    app.post("/users/:userId/trails/:trailId/visited", Visited);
 }
     
 

@@ -55,7 +55,7 @@ export async function getTrails(req: Request, res: Response, db: Sequelize) {
 
   };
 }
-export async function markTrailVisited(req: Request, res: Response) {
+export async function Visited(req: Request, res: Response) {
     try {
         const { userId, trailId } = req.params;
         const user = await User.findByPk(userId);
@@ -68,7 +68,7 @@ export async function markTrailVisited(req: Request, res: Response) {
         console.log(`User ${userId} marked trail ${trailId} as visited.`);
         res.status(200).send({ message: "Trail marked as visited." });
     } catch (error) {
-        console.log("Error on markTrailVisited:", error);
+        console.log("Error on lVisited:", error);
         return res.status(400).send({ error: `Could not mark trail as visited: ${error}` });
     }
 }
