@@ -64,9 +64,23 @@
     justify-content: center; 
     align-items: center;
     padding: 20px;
+    position: relative;
+    overflow: hidden; /* Ensure the overlay doesn't go outside the container */
 }
-.image-upload-container:hover {
-    background-color: #96D2EE;
+.image-upload-container::after {
+    content: ""; /* Pseudo-element content */
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #15577A; 
+    opacity: 0; /* Initially invisible */
+    transition: opacity 0.3s ease; /* Smooth transition for opacity */
+}
+
+.image-upload-container:hover::after {
+    opacity: 0.3; /* Show the overlay on hover */
 }
 .image-upload-container input {
     display: block; /* Ensures the input takes up the space inside the div */
