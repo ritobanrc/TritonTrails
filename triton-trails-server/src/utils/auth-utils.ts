@@ -9,6 +9,10 @@ const saltRounds = 10;
 export const registerUser = async (req:Request, res:Response) => {
     try {
         const { username, displayName, password } = req.body as { username: string, displayName: string, password: string };
+        const existingUser = await User.findOne({ where: { username } });
+        if (existingUser) {
+            return res.status(400).send({ error: 'Username already exists' });
+        }
         const salt = await bcrypt.genSalt(saltRounds);
         const passwordHash = await bcrypt.hash(password, salt);
 
