@@ -206,7 +206,7 @@ export { sequelize, User, Trail, Image, Route };
 export const initDB = async () => {
     await sequelize.sync({force: true});
     console.log('Database synchronized');
-    console.log(await sequelize.getQueryInterface().showAllTables()); 
+    console.log(await sequelize.getQueryInterface().showAllTables());
     return { sequelize, User, Trail, Image, Route};
 };
 
