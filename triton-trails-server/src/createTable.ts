@@ -134,7 +134,6 @@ Trail.init(
     {
         sequelize,
         modelName: 'Trail',
-        tableName: 'Trail',
         timestamps: false,
     }
 );
