@@ -3,6 +3,7 @@ import './Menu.css';
 import { Link } from "react-router-dom";
 import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { logout } from '../../utils/user-utils'
 
 const Menu = () => {
     // menu is open state
@@ -33,6 +34,11 @@ const Menu = () => {
       };
     }, []);
 
+    const onLogout = async (event: React.MouseEvent<HTMLAnchorElement>) => {
+        logout();
+    };
+
+
     return (
       <nav className="menu">
         <div ref={menuIconRef} className="navbar-menu-icon" onClick={toggleNavbar}>
@@ -53,7 +59,9 @@ const Menu = () => {
             <li><a href="#wishlist" onClick={() => setIsOpen(false)}>Saved</a></li>
             <li><a href="#posts" onClick={() => setIsOpen(false)}>Posts</a></li>
             <li><a href="#settings" onClick={() => setIsOpen(false)}>Settings</a></li>
-            <li><a href="#log-out">Log out</a></li>
+            <li>
+                <a href='/' onClick={ onLogout }>Logout</a>
+            </li>
           </ul>
         </div>
       </nav>

@@ -12,7 +12,8 @@ const UserProfile = () => {
       getUserInfo().then((data) => {
         console.log(data);
         setUser(data);
-      });
+      })
+      .catch((e) => console.log(e));
     }
   }, [user]);
 
