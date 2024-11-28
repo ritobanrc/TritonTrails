@@ -1,9 +1,10 @@
 import { AppContext } from "../../context/AppContext";
 import { useContext, useState, useEffect } from "react";
 import { Trail } from "../../types/types";
-import { fetchTrails } from "../../utils/trail-utils";
+import { fetchTrails, fetchRoute } from "../../utils/trail-utils";
 import { API_BASE_URL } from "../../constants/constants";
 import "./TrailList.css"
+import Map from "../Map/Map"
 
 const TrailDisplay: React.FC<{ trail: Trail }> = ({ trail }) => {
     const [images, setImages] = useState([]); // State to hold images array
@@ -21,8 +22,8 @@ const TrailDisplay: React.FC<{ trail: Trail }> = ({ trail }) => {
                 console.error('Error fetching images:', error);
             }
         };
-
         fetchImages();
+        fetchRoute(trail.id);
     }, [trail.id]); // Depend on trail.id so it refetches if the trail changes
 
     return (
@@ -41,11 +42,7 @@ const TrailDisplay: React.FC<{ trail: Trail }> = ({ trail }) => {
                         )}
                     </div>
                     <div className="trail-map" data-testid="map">
-                        <iframe
-                            src="https://www.openstreetmap.org/export/embed.html?bbox=-117.26150035858156%2C32.86383591013185%2C-117.23493576049806%2C32.891227612173246&layer=mapnik"
-                            title="Trail Map"
-                            style={{ width: '100%', height: '100%', border: 'none' }}
-                        ></iframe>
+                        <Map trailId={trail.id}/>
                     </div>
                 </div>
                 <p className="trail-description">{trail.description}</p> {/* Separate description */}

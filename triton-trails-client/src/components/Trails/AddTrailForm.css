@@ -9,11 +9,17 @@
     padding: 30px 15px;
     display: flex;
     flex-direction: column;
+    gap: 10px;
 }
 .flex-row {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    width: 100%;
+    align-items: stretch; /* Keep image and map at equal heights */
+    gap: 30px;
+    min-height: 300px;
+    max-height: 500px;
+    margin-bottom: 70px;
 }
 .flex-row .location-link {
     color: #1E7CAE; /* Blue link color */
@@ -21,6 +27,7 @@
     text-decoration: underline;
     cursor: pointer;
 }
+
 .location-link {
     margin-bottom: auto;
 }
@@ -42,23 +49,45 @@
 }
 .input-field-2::placeholder,
 .input-field-3::placeholder {
-  color: #1E7CAE; /* Your desired placeholder color */
-  font-style: italic;
-  opacity: 0.7; /* Ensures full opacity for placeholder text */
+    color: #1E7CAE; /* Your desired placeholder color */
+    font-style: italic;
+    opacity: 0.7; /* Ensures full opacity for placeholder text */
 }
 .input-field-2 {
     margin-bottom: 20px;
 }
 .image-upload-container {
-    min-height: 200px;
+    height: 90%;
     background-color: #B9E1F3;
     border: 2px dashed rgba(10,34,57, 0.5);
     display: flex; 
     justify-content: center; 
     align-items: center;
     padding: 20px;
+    position: relative;
+    overflow: hidden; /* Ensure the overlay doesn't go outside the container */
+}
+.image-upload-container::after {
+    content: ""; /* Pseudo-element content */
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #15577A; 
+    opacity: 0; /* Initially invisible */
+    transition: opacity 0.3s ease; /* Smooth transition for opacity */
 }
 
+.image-upload-container:hover::after {
+    opacity: 0.3; /* Show the overlay on hover */
+}
+.image-upload-container input {
+    display: block; /* Ensures the input takes up the space inside the div */
+    background: transparent; /* Makes sure the input doesn't override the div's background */
+    border: none; /* Removes the default input border */
+    padding: 10px; 
+}
 .input-wrapper {
     display: flex;
     flex-direction: column;
@@ -70,22 +99,9 @@
     font-style: italic;
     font-weight: bold;
 }
-  
 .input-wrapper img {
     max-width: 100px;
 }
-
-.image-upload-container:hover {
-    background-color: #96D2EE;
-}
-
-.image-upload-container input {
-    display: block; /* Ensures the input takes up the space inside the div */
-    background: transparent; /* Makes sure the input doesn't override the div's background */
-    border: none; /* Removes the default input border */
-    padding: 10px; 
-}
-
 .input-container
 input[type="file"] {
     display: block;
@@ -103,6 +119,24 @@ input[type="file"] {
     max-height: 100px;
     margin-right: auto;
     object-fit: cover;
+}
+/* Currently have margins hard coded bc idk how to align them */ 
+.header{
+    font-family: 'Roboto';
+    color: #0A2239;
+    font-size: 1.1em;
+    font-weight: normal;
+    margin-right: auto;
+    margin-bottom: 27px;
+}
+.trail-map {
+    height: 100%;
+    z-index: 1; 
+    overflow: hidden;       
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #ccc; /* Light grey border around content and map */
+    border-radius: 8px; /* Rounded corners for both elements */
 }
 .desc-header{
     font-family: 'Roboto';
