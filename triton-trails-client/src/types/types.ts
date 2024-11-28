@@ -53,3 +53,18 @@ export type Weather = {
     geometry: Geometry;
     properties: Properties;
 };
+export type Route = {
+    startLatitude: number;
+    startLongitude: number;
+    endLatitude: number;
+    endLongitude: number;
+    TrailId: number;
+}
+export type RouteDisplayProps = {
+    source: [number, number];
+    destination: [number, number];
+}
+
+export type MapProps = {
+    trailId: number;
+}

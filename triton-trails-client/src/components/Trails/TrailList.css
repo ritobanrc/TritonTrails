@@ -30,7 +30,7 @@
 }
 
 .trail-content, .trail-map {
-    max-height: 600px;
+    max-height: 500px;
     /* Added min-height for uniformity */
     min-height: 300px;
     /* Changed formatting so image crops, take out if we decide to not crop */
