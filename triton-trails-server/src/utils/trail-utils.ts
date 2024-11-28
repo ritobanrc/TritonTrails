@@ -1,4 +1,3 @@
-//import { Trail } from "../types/types";
 import { Request, Response } from "express";
 import { Sequelize } from "sequelize";
 import { Route } from "../models/route";
