@@ -1,5 +1,6 @@
 import { API_BASE_URL } from "../constants/constants";
 import { User } from "../types/types";
+import Cookies from "js-cookie";
 
 // Function to create a User in the backend. Method: POST
 export const createUser = async (user: {}): Promise<User> => {
@@ -58,3 +59,7 @@ export const getUserInfo = async (): Promise<User> => {
 
 	return response.json();
 };
+
+export const logout = () => {
+    Cookies.remove("token", { path: "/" });
+}

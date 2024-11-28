@@ -1,9 +1,21 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './Navbar.css';
 import { Link } from "react-router-dom";
 import Menu from "../Menu/Menu";
+import { useAppContext } from '../../context/AppContext';
+import { logout } from '../../utils/user-utils'
 
 const Navbar = () => {
+  const { user, setUser } = useAppContext();
+
+  var loginButton = null;
+
+
+  const onLogout = async (event: React.MouseEvent<HTMLAnchorElement>) => {
+      logout();
+  };
+
+
   return (
     <nav className="navbar">
       <div className="navbar-content">
@@ -15,7 +27,9 @@ const Navbar = () => {
           <ul className="navbar-links">
             <li><Link to="/">Explore</Link></li>
             <li><a href="#wishlist">Wishlist</a></li>
-            <li><a href="/login">Login</a></li> {/* I altered the '#'' to a '/'' for login, might be neccesary for other links  */}
+            <li> 
+                { (!user) ? (<a href="/login">Login</a>) : (<a href='/' onClick={ onLogout }>Logout</a>) }
+            </li>
           </ul>
           <div>
             <Menu /> {/* Menu component inside the icon container */}
