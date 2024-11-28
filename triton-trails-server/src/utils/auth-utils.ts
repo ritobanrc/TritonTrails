@@ -1,8 +1,8 @@
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
-import { User } from '../createTable';
 import { SECRET_KEY } from '../constants';
 import { Request, Response } from "express";
+import { User } from '../models/user';
 
 const saltRounds = 10;
 

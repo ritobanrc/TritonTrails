@@ -1,9 +1,9 @@
 //import { Trail } from "../types/types";
 import { Request, Response } from "express";
 import { Sequelize } from "sequelize";
-import { Route } from "../createTable";
-import { User } from "../createTable";
-import { Trail } from "../createTable";
+import { Route } from "../models/route";
+import { User } from "../models/user";
+import { Trail } from "../models/trail";
 
 export async function createTrailServer(req: Request, res: Response, db:Sequelize) {
     try {
@@ -64,7 +64,7 @@ export async function Visited(req: Request, res: Response) {
         if (!user || !trail) {
             return res.status(404).send({ error: "User or Trail not found." });
         }
-        await user.addTrail(trail);
+        await user.$add('trail', trail);
         console.log(`User ${userId} marked trail ${trailId} as visited.`);
         res.status(200).send({ message: "Trail marked as visited." });
     } catch (error) {

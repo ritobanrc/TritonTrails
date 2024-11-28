@@ -1,9 +1,9 @@
 import { createTrailServer, getTrails, Visited } from "./trail-utils";
 import { Request, Response } from "express";
 import { Sequelize } from "sequelize";
-import { Route } from "../createTable";
-import { User } from "../createTable";
-import { Trail } from "../createTable";
+import { Route } from "../models/route";
+import { User } from "../models/user";
+import { Trail } from "../models/trail";
 
 export function createTrailsEndpoints (app: any, db: Sequelize) 
 {
