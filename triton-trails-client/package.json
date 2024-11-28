@@ -54,7 +54,7 @@
     ]
   },
   "devDependencies": {
-    "@types/js-cookie": "^3.0.6"
+    "@types/js-cookie": "^3.0.6",
     "@types/mapbox__polyline": "^1.0.5"
   }
 }
