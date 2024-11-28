@@ -12,14 +12,12 @@ interface UserAttributes {
     passwordHash: string;
     passwordSalt: string;
 }
-
 interface TrailAttributes {
     id?: number;
     name: string;
     description: string;
     image?: string;
 }
-
 interface ImageAttributes {
     id?: number;
     image: Buffer;
@@ -209,18 +207,15 @@ Route.init(
 );
 Trail.hasMany(Image);         
 Image.belongsTo(Trail);   
-//Trail.hasMany(Route);
 Route.belongsTo(Trail, { foreignKey: 'TrailId', onDelete: 'CASCADE' });
 User.belongsToMany(Trail, { through: 'User_Trails', timestamps: false }); 
 Trail.belongsToMany(User, { through: 'User_Trails', timestamps: false }); 
 
 export { sequelize, User, Trail, Image, Route };
-
 export const initDB = async () => {
     await sequelize.sync({force: true});
     console.log('Database synchronized');
     console.log(await sequelize.getQueryInterface().showAllTables());
     return { sequelize, User, Trail, Image, Route};
 };
-
 export default initDB;

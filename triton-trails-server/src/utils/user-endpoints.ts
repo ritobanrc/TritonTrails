@@ -7,7 +7,6 @@ interface JwtTokenData extends JwtPayload {
   username: string;
   userId: number;
 }
-
 export function createUserEndpoints (app: any) {
     app.get("/user-info", (req: Request, res: Response) => {
         const token = req.cookies.jwt;
