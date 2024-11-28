@@ -9,7 +9,7 @@
     padding: 30px 15px;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 10px;
 }
 .flex-row {
     display: flex;
@@ -131,9 +131,9 @@ input[type="file"] {
 }
 .trail-map {
     height: 100%;
-    z-index: 10; 
+    z-index: 1; 
     overflow: hidden;       
-    display: block;
+    display: flex;
     flex-direction: column;
     border: 1px solid #ccc; /* Light grey border around content and map */
     border-radius: 8px; /* Rounded corners for both elements */

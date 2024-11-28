@@ -43,7 +43,7 @@ const AddTrailForm = () => {
       image: image,
       description: description,
     };
-
+    
     const newRoute: Route = {
       startLatitude: startPoint ? startPoint[0] : 0,
       startLongitude: startPoint ? startPoint[1] : 0,
@@ -59,8 +59,12 @@ const AddTrailForm = () => {
     setStartPoint(null);
     setEndPoint(null);
 
-    await createTrail(newTrail);
-    await createRoute(newTrail.id, newRoute);
+    // createRoute runs after createTrail
+    await createTrail(newTrail)
+    .then((createdTrail) => {
+      createRoute(createdTrail.id, newRoute);
+    })
+    console.log(newTrail.id, newTrail);
     navigate('/');
   };
 
