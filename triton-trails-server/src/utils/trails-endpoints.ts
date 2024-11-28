@@ -1,9 +1,12 @@
-import { createTrailServer, getTrails } from "./trail-utils";
+import { createTrailServer, getTrails, Visited } from "./trail-utils";
 import { Request, Response } from "express";
 import { Sequelize } from "sequelize";
-import { Route } from "../createTable";
+import { Route } from "../models/route";
+import { User } from "../models/user";
+import { Trail } from "../models/trail";
 
-export function createTrailsEndpoints (app: any, db: Sequelize) {
+export function createTrailsEndpoints (app: any, db: Sequelize) 
+{
     // Create a new trail
     app.post("/trails", (req: Request, res: Response) => {
         createTrailServer(req, res, db);
@@ -45,8 +48,6 @@ export function createTrailsEndpoints (app: any, db: Sequelize) {
             }
         })();
     });
-
-
     app.post("/trails/:id/routes", async (req: Request, res: Response) => {
         const { id } = req.params;
         const { startLatitude, startLongitude, endLatitude, endLongitude } = req.body;
@@ -66,7 +67,6 @@ export function createTrailsEndpoints (app: any, db: Sequelize) {
                 endLongitude,
                 TrailId: parseInt(id, 10),
             });
-
             console.log(`[POST /trails/${id}/routes] Created route for trail: ${id}`);
             res.status(201).json(route);
         } catch (error: any) {
@@ -104,14 +104,12 @@ export function createTrailsEndpoints (app: any, db: Sequelize) {
             if (!route) {
                 return res.status(404).json({ error: "Route not found for this trail." });
             }
-
             await route.update({
                 startLatitude: startLatitude ?? route.startLatitude,
                 startLongitude: startLongitude ?? route.startLongitude,
                 endLatitude: endLatitude ?? route.endLatitude,
                 endLongitude: endLongitude ?? route.endLongitude,
             });
-
             console.log(`[PUT /trails/${trailId}/routes/${routeId}] Updated route: ${routeId}`);
             res.status(200).json(route);
         } catch (error: any) {
@@ -121,7 +119,6 @@ export function createTrailsEndpoints (app: any, db: Sequelize) {
     });
     app.delete("/trails/:trailId/routes/:routeId", async (req: Request, res: Response) => {
         const { trailId, routeId } = req.params;
-
         try {
             const route = await Route.findOne({
                 where: {
@@ -143,4 +140,9 @@ export function createTrailsEndpoints (app: any, db: Sequelize) {
             res.status(500).json({ error: "Failed to delete route." });
         }
     });
+    app.post("/trails", (req: Request, res: Response) => createTrailServer(req, res, db));
+    app.get("/trails", (req: Request, res: Response) => getTrails(req, res, db));
+    app.post("/users/:userId/trails/:trailId/visited", Visited);
 }
+    
+
