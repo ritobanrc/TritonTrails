@@ -53,6 +53,10 @@
     ]
   },
   "devDependencies": {
-    "@types/mapbox__polyline": "^1.0.5"
+    "@babel/core": "^7.26.0",
+    "@babel/preset-env": "^7.26.0",
+    "@babel/preset-react": "^7.25.9",
+    "@types/mapbox__polyline": "^1.0.5",
+    "babel-jest": "^29.7.0"
   }
 }

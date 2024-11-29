@@ -9,6 +9,7 @@ import Register from "./components/User/Register";
 import WeatherDisplay from "./components/Weather/Weather";
 import { Route, Routes } from "react-router-dom";
 import UserProfile from "./components/User/Profile";
+import "leaflet/dist/leaflet.css";
 
 // make sure to npm install react-router-dom
 
