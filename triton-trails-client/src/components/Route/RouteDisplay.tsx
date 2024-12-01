@@ -1,30 +1,31 @@
 import React, { useEffect } from "react";
 import { useMap } from "react-leaflet";
 import L from "leaflet";
-import polyline from '@mapbox/polyline';
 import 'leaflet/dist/leaflet.css';
-import { RouteDisplayProps } from "../../types/types"
+import { RouteDisplayProps } from "../../types/types";
 
 const RouteDisplay: React.FC<RouteDisplayProps> = ({ source, destination }) => {
     const map = useMap();
 
     useEffect(() => {
         const fetchRoute = async () => {
+            const apiKey = process.env.REACT_APP_API_KEY;
+            console.log(apiKey)
             const response = await fetch(
-                `https://router.project-osrm.org/route/v1/foot/${source[1]},${source[0]};${destination[1]},${destination[0]}?overview=full`
+                `https://api.openrouteservice.org/v2/directions/foot-walking?api_key=${apiKey}&start=${destination[1]},${destination[0]}&end=${source[1]},${source[0]}`,
+                { method: 'GET' }
             );
             const data = await response.json();
-            if (data.routes && data.routes.length > 0 && data.routes[0].geometry) {
-                const decodedCoords = polyline.decode(data.routes[0].geometry);
-                const latlngs: L.LatLngExpression[] = decodedCoords.map((coord: [number, number]) => [coord[0], coord[1]] as [number, number]);
+            if (data.features && data.features.length > 0) {
+                const points = data.features[0].geometry.coordinates;
+                const latlngs: L.LatLngExpression[] = points.map((coord: [number, number]) => [coord[1], coord[0]]); // Reverse the coordinates for Leaflet
 
-                // Create a polyline from the decoded coordinates
+                // Create a polyline from the coordinates
                 const routePolyline = L.polyline(latlngs, { color: "red" });
                 routePolyline.addTo(map);
 
                 // Fit map bounds to polyline
                 map.fitBounds(routePolyline.getBounds());
-
             }
         };
 
