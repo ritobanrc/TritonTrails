@@ -3,6 +3,7 @@ import { Sequelize } from "sequelize";
 import { Route } from "../models/route";
 import { User } from "../models/user";
 import { Trail } from "../models/trail";
+import { UserTrail } from "../models/user-trail";
 
 export async function createTrailServer(req: Request, res: Response, db:Sequelize) {
     try {
@@ -69,5 +70,32 @@ export async function Visited(req: Request, res: Response) {
     } catch (error) {
         console.log("Error on lVisited:", error);
         return res.status(400).send({ error: `Could not mark trail as visited: ${error}` });
+    }
+}
+
+export async function getVisited(req: Request, res: Response, db: Sequelize) {
+    try {
+        const { userId } = req.params;
+        const userTrails = await UserTrail.findAll({
+            where: { userId: userId }
+        });
+
+        if (!userTrails || userTrails.length === 0) {
+            return res.status(404).send({ message: "No visited trails found for this user." });
+        }
+
+        // Extract trail IDs from userTrails
+        const trailIds = userTrails.map(ut => ut.TrailId);
+
+        // Fetch all trails that the user has visited
+        const trails = await db.models.Trail.findAll({
+            where: { id: trailIds }
+        });
+
+        res.status(200).send({ data: trails });
+
+    } catch (error) {
+        console.error('Error fetching visited trails:', error);
+        return res.status(500).send("Could not get trails: ");
     }
 }

@@ -75,3 +75,19 @@ export const markTrailAsVisited = async (userId: number, trailId: number): Promi
         throw new Error("Failed to mark trail as visited");
     }
 };
+
+export const fetchVisitedTrails = async (userId: number): Promise<Trail[]> => {
+	const response = await fetch(`${API_BASE_URL}/visited/${userId}`);
+	if (!response.ok) {
+		throw new Error('Failed to fetch trails');
+	}
+
+	// Parsing the response to get the data
+	let trailList = response.json().then((jsonResponse) => {
+		console.log("data in fetchTrails", jsonResponse);
+		return jsonResponse.data;
+	});
+
+	console.log("response in fetchTrails", trailList);
+	return trailList;
+};
