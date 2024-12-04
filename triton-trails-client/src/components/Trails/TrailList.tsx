@@ -1,53 +1,77 @@
-import { AppContext } from "../../context/AppContext";
-import { useContext, useState, useEffect } from "react";
+import React, { useContext, useState, useEffect } from "react";
+import { useAppContext, AppContext } from '../../context/AppContext'; // Corrected the import
 import { Trail } from "../../types/types";
-import { fetchTrails, fetchRoute } from "../../utils/trail-utils";
+import { fetchTrails, fetchRoute, markTrailAsVisited } from "../../utils/trail-utils";
 import { API_BASE_URL } from "../../constants/constants";
-import "./TrailList.css"
-import Map from "../Map/Map"
+import Map from "../Map/Map";
+import "./TrailList.css";
+import { getUserInfo } from '../../utils/user-utils';
 
 const TrailDisplay: React.FC<{ trail: Trail }> = ({ trail }) => {
-    const [images, setImages] = useState([]); // State to hold images array
+    const [images, setImages] = useState([]);
+    const { user, setUser } = useAppContext();
+    const [error, setError] = useState(''); // State to hold any error messages
 
     useEffect(() => {
-        // Fetch images only once when the component mounts
+        if (!user) {
+            getUserInfo().then(setUser).catch(e => {
+                console.error('Failed to fetch user info:', e);
+                setError('Failed to fetch user info. Please try reloading the page.');
+            });
+        }
+    }, [user, setUser]);
+
+    useEffect(() => {
         const fetchImages = async () => {
             try {
-                const res = await fetch(`${API_BASE_URL}/trail_images/` + trail.id, {
-                    method: 'GET',
-                });
+                const res = await fetch(`${API_BASE_URL}/trail_images/` + trail.id);
                 const data = await res.json();
-                setImages(data); // Update state with the fetched images array
+                setImages(data);
             } catch (error) {
                 console.error('Error fetching images:', error);
+                setError('Failed to load images.');
             }
         };
+
         fetchImages();
         fetchRoute(trail.id);
-    }, [trail.id]); // Depend on trail.id so it refetches if the trail changes
+    }, [trail.id]);
+
+    const handleVisit = async () => {
+        if (!user) {
+            alert('User information is not available. Please log in.');
+            return;
+        }
+        try {
+            await markTrailAsVisited(user.id, trail.id);
+            alert("Trail marked as visited!");
+        } catch (error) {
+            console.error('Failed to mark trail as visited:', error);
+            alert("Failed to mark trail as visited. Please try again.");
+        }
+    };
+
+    if (error) {
+        return <p className="error">{error}</p>; // Show any error message if present
+    }
 
     return (
         <div className="ListTrails">
-        <div className="rounded-div">
-            <p className="trail-name">{trail.name}</p>
-            <div className="trail-details">
-                <div className="trail-visuals">  {/* Container for image and map only */}
-                    <div className="trail-content">
-                        {images.length > 0 && (
-                            <img
-                                className="trail-image"
-                                src={`${API_BASE_URL}/image/` + images[0]}
-                                alt={trail.name}
-                            />
-                        )}
+            <div className="rounded-div">
+                <p className="trail-name">{trail.name}</p>
+                <div className="trail-details">
+                    <div className="trail-visuals">
+                        <div className="trail-content">
+                            {images.length > 0 ? (
+                                <img className="trail-image" src={`${API_BASE_URL}/image/` + images[0]} alt={trail.name} />
+                            ) : <p>No images available</p>}
+                        </div>
+                        <Map trailId={trail.id} />
                     </div>
-                    <div className="trail-map" data-testid="map">
-                        <Map trailId={trail.id}/>
-                    </div>
+                    <p className="trail-description">{trail.description}</p>
+                    <button onClick={handleVisit} disabled={!user} className="visit-button">Mark as Visited</button>
                 </div>
-                <p className="trail-description">{trail.description}</p> {/* Separate description */}
             </div>
-        </div>
         </div>
     );
 };
@@ -79,4 +103,3 @@ const TrailList = () => {
 };
 
 export default TrailList;
-
