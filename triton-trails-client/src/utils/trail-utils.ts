@@ -64,3 +64,14 @@ export const fetchRoute = async (trailId:number) => {
         throw error;
     }
 };
+export const markTrailAsVisited = async (userId: number, trailId: number): Promise<void> => {
+    const response = await fetch(`${API_BASE_URL}/users/${userId}/trails/${trailId}/visited`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+    });
+    if (!response.ok) {
+        throw new Error("Failed to mark trail as visited");
+    }
+};
