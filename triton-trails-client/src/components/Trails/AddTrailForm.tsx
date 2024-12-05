@@ -2,7 +2,7 @@ import React, { useState, useContext, useRef } from "react";
 import { AppContext } from "../../context/AppContext";
 import { Trail, Route } from "../../types/types";
 import { createTrail, createRoute } from "../../utils/trail-utils"; 
-import { MapContainer, TileLayer, Marker, Popup, useMapEvents } from "react-leaflet";
+import { MapContainer, TileLayer, Marker, useMapEvents } from "react-leaflet";
 import L from "leaflet";
 import './AddTrailForm.css';
 import { useNavigate } from 'react-router-dom';

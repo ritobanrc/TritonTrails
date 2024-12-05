@@ -44,27 +44,31 @@ const UserProfile = () => {
   }
   
   return (
-    <div className="user-profile">
-      <div className="avatar"></div>
-      <div className="user-info">
-        <h2 className="display-name">{user.displayName}</h2>
-        <h2 className="username">{user.username}</h2>
-        <div className="visited-trails">
-          <h3>Visited Trails</h3>
-          {visitedTrails.length > 0 ? (
-            visitedTrails.map(trail => (
-              <TrailDisplay key={trail.id} trail={trail} />
-            ))
-          ) : (
-            <p>No trails have been visited yet.</p> // Provide a message for no data
-          )}
+    <div className="Profile">
+      <div className="user-profile">
+        <div className="avatar"></div>
+        <div className="user-info">
+          <h2 className="display-name">{user.displayName}</h2>
+          <h2 className="username">{user.username}</h2>
+        </div>
+        <div className="user-actions">
+          <Link to="/add-trail-form">
+            <button className="add-trail-button">Add Your Own Trail</button>
+          </Link>
+          <button className="edit-profile-button">Edit profile</button>
         </div>
       </div>
-      <div className="user-actions">
-        <Link to="/add-trail-form">
-          <button className="add-trail-button">Add Your Own Trail</button>
-        </Link>
-        <button className="edit-profile-button">Edit profile</button>
+      <div className="visited-trails">
+        <div className="page-header">
+          <h3 className="page-header-text">Visited Trails</h3>
+        </div>
+        {visitedTrails.length > 0 ? (
+          visitedTrails.map(trail => (
+            <TrailDisplay key={trail.id} trail={trail} />
+          ))
+        ) : (
+          <p>No trails have been visited yet.</p> // Provide a message for no data
+        )}
       </div>
     </div>
   );

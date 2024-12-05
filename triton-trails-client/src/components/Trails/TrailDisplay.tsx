@@ -58,7 +58,10 @@ const TrailDisplay: React.FC<{ trail: Trail }> = ({ trail }) => {
     return (
         <div className="ListTrails">
             <div className="rounded-div">
-                <p className="trail-name">{trail.name}</p>
+                <div className="header-row">
+                    <p className="trail-name">{trail.name}</p>
+                    <button onClick={handleVisit} disabled={!user} className="visit-button">Mark as Visited</button>
+                </div>
                 <div className="trail-details">
                     <div className="trail-visuals">
                         <div className="trail-content">
@@ -66,10 +69,11 @@ const TrailDisplay: React.FC<{ trail: Trail }> = ({ trail }) => {
                                 <img className="trail-image" src={`${API_BASE_URL}/image/` + images[0]} alt={trail.name} />
                             ) : <p>No images available</p>}
                         </div>
-                        <Map trailId={trail.id} />
+                        <div className="trail-map" data-testid="map">
+                            <Map trailId={trail.id}/>
+                        </div>
                     </div>
                     <p className="trail-description">{trail.description}</p>
-                    <button onClick={handleVisit} disabled={!user} className="visit-button">Mark as Visited</button>
                 </div>
             </div>
         </div>
