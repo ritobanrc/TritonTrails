@@ -1,3 +1,6 @@
+.Profile {
+    padding-bottom: 20px;
+}
 .user-profile {
     background-color: #E7F7FF;
     padding: 20px;
@@ -8,7 +11,6 @@
     align-items: center;
     justify-content: space-between;
 }
-  
 .avatar {
     width: 60px;
     height: 60px;
