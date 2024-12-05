@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useAppContext } from '../../context/AppContext'; // Corrected the import
 import { Trail } from "../../types/types";
+import { TrailRating } from "./Rating";
 import { fetchRoute, markTrailAsVisited } from "../../utils/trail-utils";
 import { API_BASE_URL } from "../../constants/constants";
 import Map from "../Map/Map";
@@ -10,6 +11,7 @@ import { getUserInfo } from '../../utils/user-utils';
 const TrailDisplay: React.FC<{ trail: Trail }> = ({ trail }) => {
     const [images, setImages] = useState([]);
     const { user, setUser } = useAppContext();
+    const [rating, setRating] = useState<number>(0);
     const [error, setError] = useState(''); // State to hold any error messages
 
     useEffect(() => {
@@ -43,12 +45,16 @@ const TrailDisplay: React.FC<{ trail: Trail }> = ({ trail }) => {
             return;
         }
         try {
-            await markTrailAsVisited(user.id, trail.id);
+            await markTrailAsVisited(user.id, trail.id, rating);
             alert("Trail marked as visited!");
         } catch (error) {
             console.error('Failed to mark trail as visited:', error);
             alert("Failed to mark trail as visited. Please try again.");
         }
+    };
+
+    const handleRatingChange = (rating: number) => {
+        setRating(rating);
     };
 
     if (error) {
@@ -60,6 +66,7 @@ const TrailDisplay: React.FC<{ trail: Trail }> = ({ trail }) => {
             <div className="rounded-div">
                 <div className="header-row">
                     <p className="trail-name">{trail.name}</p>
+                    <TrailRating trail={trail} onRatingChange={handleRatingChange} />;
                     <button onClick={handleVisit} disabled={!user} className="visit-button">Mark as Visited</button>
                 </div>
                 <div className="trail-details">

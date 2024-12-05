@@ -143,7 +143,7 @@ export function createTrailsEndpoints (app: any, db: Sequelize)
     app.post("/trails", (req: Request, res: Response) => createTrailServer(req, res, db));
     app.get("/trails", (req: Request, res: Response) => getTrails(req, res, db));
     app.get("/visited/:userId/", (req: Request, res: Response) => getVisited(req, res, db));
-    app.post("/users/:userId/trails/:trailId/visited", Visited);
+    app.post("/visited", Visited);
 }
     
 

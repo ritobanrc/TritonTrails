@@ -18,7 +18,7 @@ export { sequelize, User, Trail, Image, Route, UserTrail };
 export const initDB = async () => {
     sequelize.addModels([User, Trail, Image, Route, UserTrail]);
 
-    await sequelize.sync();
+    await sequelize.sync({ force: true });
     console.log('Database synchronized');
     console.log(await sequelize.getQueryInterface().showAllTables());
     return { sequelize, User, Trail, Image, Route };
