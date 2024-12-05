@@ -2,8 +2,6 @@ import React, { useState, useEffect } from "react";
 import { MapContainer, Marker, TileLayer } from "react-leaflet";
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
-import icon from 'leaflet/dist/images/marker-icon.png';
-import iconShadow from 'leaflet/dist/images/marker-shadow.png';
 import RouteDisplay from "../Route/RouteDisplay";
 import { fetchRoute } from "../../utils/trail-utils";
 import { Route as RouteType, MapProps } from "../../types/types";

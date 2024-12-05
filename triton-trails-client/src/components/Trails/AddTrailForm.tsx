@@ -130,7 +130,7 @@ const AddTrailForm = () => {
               >
                 {!image && (
                   <div className="input-wrapper">
-                    <img src="https://cdn-icons-png.freepik.com/512/5008/5008022.png" alt="Upload Image" />
+                    <img src="https://cdn-icons-png.freepik.com/512/5008/5008022.png" alt="the trail" />
                     <label>Upload Image</label>
                   </div>
                 )}

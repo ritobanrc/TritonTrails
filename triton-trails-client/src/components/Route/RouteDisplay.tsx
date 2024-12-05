@@ -13,7 +13,7 @@ const RouteDisplay: React.FC<RouteDisplayProps> = ({ source, destination }) => {
 
     const fetchRoute = async () => {
       try {
-        if (source[0] == 0 || source[1] == 0 || destination[0] == 0 || destination[1] == 1) return;
+        if (source[0] === 0 || source[1] === 0 || destination[0] === 0 || destination[1] === 1) return;
 
         const url = `https://router.project-osrm.org/route/v1/foot/${source[1]},${source[0]};${destination[1]},${destination[0]}?overview=full&geometries=polyline`;
         const response = await fetch(url);

@@ -2,7 +2,6 @@ import React from 'react';
 import './Menu.css';
 import { Link } from "react-router-dom";
 import { useState, useEffect, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { logout } from '../../utils/user-utils'
 
 const Menu = () => {

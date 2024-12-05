@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAppContext } from '../../context/AppContext';
 
 const Register = () => {
-    const { user, setUser } = useAppContext();
+    const { setUser } = useAppContext();
     const [displayName, setDisplayName] = useState("");
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");

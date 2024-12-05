@@ -1,7 +1,7 @@
-import React, { useContext, useState, useEffect } from "react";
-import { useAppContext, AppContext } from '../../context/AppContext'; // Corrected the import
+import React, { useState, useEffect } from "react";
+import { useAppContext } from '../../context/AppContext'; // Corrected the import
 import { Trail } from "../../types/types";
-import { fetchTrails, fetchRoute, markTrailAsVisited } from "../../utils/trail-utils";
+import { fetchRoute, markTrailAsVisited } from "../../utils/trail-utils";
 import { API_BASE_URL } from "../../constants/constants";
 import Map from "../Map/Map";
 import "./TrailList.css";
