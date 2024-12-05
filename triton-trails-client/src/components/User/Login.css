@@ -13,7 +13,6 @@ body {
     border-radius: 10px;
     box-shadow: 0 5px 10px rgba(0,0,0,0.1);
 }
-
 .sign-in {
     font-family: 'Marmelad';
     color: black;
@@ -29,6 +28,17 @@ body {
     border: 2px solid #51B4E1;
     border-radius: 5px;
     font-size: 1.1em; /* Larger text in inputs */
+}
+/* We want to override the browser default native red borders
+/* Reset the default invalid styles */
+.input-field:invalid {
+    border-color: initial; /* Resets to default color */
+}
+
+/* Add custom styles */
+.input-field:focus {
+    border-color:#51B4E1; /* Your desired focus color */
+    outline: none;
 }
 
 /* Button styling, even with input */

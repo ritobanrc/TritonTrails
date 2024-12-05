@@ -47,6 +47,16 @@
     font-family: 'Roboto';
     background-color: #fff; /* White background for inputs */
 }
+/* We want to override the browser default native red borders
+/* Reset the default invalid styles */
+.input-field-2:invalid, .input-field-3:invalid{
+    border-color: initial; /* Resets to default color */
+}
+/* Add custom styles */
+.input-field-2:focus,.input-field-3:focus {
+    border-color:#51B4E1; /* Your desired focus color */
+    outline: none;
+}
 .input-field-2::placeholder,
 .input-field-3::placeholder {
     color: #1E7CAE; /* Your desired placeholder color */
