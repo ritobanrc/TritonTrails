@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import './Navbar.css';
 import { Link } from "react-router-dom";
 import Menu from "../Menu/Menu";
@@ -6,10 +6,7 @@ import { useAppContext } from '../../context/AppContext';
 import { logout } from '../../utils/user-utils'
 
 const Navbar = () => {
-  const { user, setUser } = useAppContext();
-
-  var loginButton = null;
-
+  const { user } = useAppContext();
 
   const onLogout = async (event: React.MouseEvent<HTMLAnchorElement>) => {
       logout();

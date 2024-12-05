@@ -2,12 +2,11 @@ import React, {useState} from 'react';
 import './Login.css';
 import { Link } from "react-router-dom";
 import { loginUser } from "../../utils/user-utils"
-import UserProfile from "./Profile"
 import { useAppContext } from '../../context/AppContext';
 import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
-  const { user, setUser } = useAppContext();
+  const {  setUser } = useAppContext();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();

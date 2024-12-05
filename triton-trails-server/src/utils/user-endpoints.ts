@@ -9,7 +9,7 @@ interface JwtTokenData extends JwtPayload {
 }
 export function createUserEndpoints (app: any) {
     app.get("/user-info", (req: Request, res: Response) => {
-        const token = req.cookies.jwt;
+        const token = req.cookies.token;
         if (!token) {
             res.status(401).send("No token found");
             return;
