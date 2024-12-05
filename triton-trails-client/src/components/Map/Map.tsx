@@ -8,13 +8,21 @@ import RouteDisplay from "../Route/RouteDisplay";
 import { fetchRoute } from "../../utils/trail-utils";
 import { Route as RouteType, MapProps } from "../../types/types";
 
-const defaultIcon = L.icon({
-    iconUrl: icon,
-    shadowUrl: iconShadow,
-    iconSize: [25, 41], // Size of the icon
-    iconAnchor: [12, 41], // Point of the icon which will correspond to marker's location
-    popupAnchor: [1, -34], // Point from which the popup should open relative to the iconAnchor
-    shadowSize: [41, 41] // Size of the shadow
+const startIcon = new L.Icon({
+    iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-blue.png',
+    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+    popupAnchor: [1, -34],
+    shadowSize: [41, 41]
+});
+const endIcon = new L.Icon({
+    iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png',
+    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+    popupAnchor: [1, -34],
+    shadowSize: [41, 41]
 });
 
 const Map: React.FC<MapProps> = ({ trailId }) => {
@@ -61,8 +69,8 @@ const Map: React.FC<MapProps> = ({ trailId }) => {
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
             {route && <RouteDisplay source={[route.startLatitude, route.startLongitude]} destination={[route.endLatitude, route.endLongitude]} />}
-            <Marker position={[route.startLatitude, route.startLongitude]} icon={defaultIcon}>  </Marker>
-            <Marker position={[route.endLatitude, route.endLongitude]} icon={defaultIcon}> </Marker>
+            <Marker position={[route.startLatitude, route.startLongitude]} icon={startIcon}> </Marker>
+            <Marker position={[route.endLatitude, route.endLongitude]} icon={endIcon}> </Marker>
         </MapContainer>
     );
 }
