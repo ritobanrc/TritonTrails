@@ -28,4 +28,7 @@ export class UserTrail extends Model {
     @ForeignKey(() => Trail)
     @Column
     TrailId!: number;
+
+    @Column
+    rating?: number;
 }

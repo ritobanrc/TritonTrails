@@ -1,0 +1,37 @@
+.star-rating {
+  position: relative;
+  display: inline-flex;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+  margin: 0 -0.25rem;
+}
+
+.rating-input {
+  position: absolute;
+  opacity: 0;
+}
+
+.rating-label {
+  cursor: pointer;
+  color: grey;
+  padding: 0 0.25rem;
+  transition: color 0.15s;
+}
+
+.rating-input:checked ~ label {
+  color: gold;
+}
+
+.rating-input:hover ~ label {
+  color: goldenrod;
+  transition: none;
+}
+
+.rating-label:active {
+  color: darkgoldenrod !important;
+}
+
+.rating-input:focus-visible + label {
+  outline-offset: 1px;
+  outline: #4f46e5 solid 2px;
+}
