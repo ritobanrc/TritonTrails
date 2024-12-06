@@ -4,6 +4,8 @@ import { Route } from "../models/route";
 import { User } from "../models/user";
 import { Trail } from "../models/trail";
 import { UserTrail } from "../models/user-trail";
+import { SECRET_KEY } from '../constants';
+import jwt from 'jsonwebtoken';
 
 export async function createTrailServer(req: Request, res: Response, db:Sequelize) {
     try {
@@ -102,3 +104,40 @@ export async function getVisited(req: Request, res: Response, db: Sequelize) {
         return res.status(500).send("Could not get trails: ");
     }
 }
+
+export const getTrailRating = async (req: Request, res: Response) => {
+    try {
+        const token = req.cookies.token;
+        if (!token) {
+            return res.status(401).send("No token found");
+        }
+
+        const decoded = jwt.verify(token, SECRET_KEY) as { userId: number };
+        if (!decoded) {
+            return res.status(401).send("Invalid token");
+        }
+
+        const userId = decoded.userId;
+
+        const { trailId } = req.params;
+        if (!trailId) {
+            return res.status(400).send("Trail ID is required");
+        }
+
+        const userTrail = await UserTrail.findOne({
+            where: {
+                UserId: userId,
+                TrailId: trailId,
+            },
+        });
+
+        if (!userTrail) {
+            return res.status(404).send("Rating not found for this trail");
+        }
+
+        res.status(200).json({ rating: userTrail.rating });
+    } catch (error) {
+        console.error(error);
+        res.status(500).send("Internal server error");
+    }
+};
